@@ -1,0 +1,131 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/repos/wraskit/!svn/ver/134/scripts/controllers
+END
+connectsController.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/wraskit/!svn/ver/416/scripts/controllers/connectsController.js
+END
+answersController.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/wraskit/!svn/ver/575/scripts/controllers/answersController.js
+END
+submitanswerController.js
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/repos/wraskit/!svn/ver/271/scripts/controllers/submitanswerController.js
+END
+wraskitController.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/wraskit/!svn/ver/573/scripts/controllers/wraskitController.js
+END
+registerController.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/wraskit/!svn/ver/548/scripts/controllers/registerController.js
+END
+feedbackController.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/wraskit/!svn/ver/556/scripts/controllers/feedbackController.js
+END
+homeController.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/wraskit/!svn/ver/557/scripts/controllers/homeController.js
+END
+myanswersController.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/wraskit/!svn/ver/386/scripts/controllers/myanswersController.js
+END
+infoController.js
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/repos/wraskit/!svn/ver/438/scripts/controllers/infoController.js
+END
+forgotController.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repos/wraskit/!svn/ver/499/scripts/controllers/forgotController.js
+END
+profileController.js
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/repos/wraskit/!svn/ver/492/scripts/controllers/profileController.js
+END
+settingsController.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/wraskit/!svn/ver/450/scripts/controllers/settingsController.js
+END
+changeProfilePicController.js
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repos/wraskit/!svn/ver/278/scripts/controllers/changeProfilePicController.js
+END
+searchController.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/repos/wraskit/!svn/ver/240/scripts/controllers/searchController.js
+END
+editanswerController.js
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/repos/wraskit/!svn/ver/477/scripts/controllers/editanswerController.js
+END
+wraskinterestController.js
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/wraskit/!svn/ver/569/scripts/controllers/wraskinterestController.js
+END
+editprofileController.js
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/repos/wraskit/!svn/ver/270/scripts/controllers/editprofileController.js
+END
+myprofileController.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/wraskit/!svn/ver/571/scripts/controllers/myprofileController.js
+END
+loginController.js
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/repos/wraskit/!svn/ver/490/scripts/controllers/loginController.js
+END
+changePasswordController.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/repos/wraskit/!svn/ver/134/scripts/controllers/changePasswordController.js
+END
+locationController.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/repos/wraskit/!svn/ver/273/scripts/controllers/locationController.js
+END

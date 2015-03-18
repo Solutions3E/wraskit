@@ -1,0 +1,77 @@
+10
+
+dir
+127
+http://demo1.host3e.com/repos/wraskit/admin/yii/framework/cli/views/shell/module
+http://demo1.host3e.com/repos/wraskit
+
+
+
+2014-06-06T13:01:30.826070Z
+127
+satheesh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4a753f75-fb33-410c-9845-5f7c4add3627
+
+models
+dir
+
+components
+dir
+
+controllers
+dir
+
+messages
+dir
+
+module.php
+file
+
+
+
+
+2014-06-06T12:48:36.274236Z
+a97ef89d8542a49d40a950fd89bd1b5c
+2014-06-06T13:01:30.826070Z
+127
+satheesh
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+707
+
+views
+dir
+

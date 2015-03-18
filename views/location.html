@@ -1,0 +1,85 @@
+<div class="website_wrapper">
+    <div class="hdr_wrapper">
+        	<div class="hdr_continer">
+            	<ul class="top-menu">
+                    <li><a ng-tap="$navigate.go('/home')" class="home"></a></li>
+                    <li><a ng-tap="$navigate.go('/myprofile')">Profile</a>  </li>
+                    <li><a ng-tap="$navigate.go('/wraskit')">Wrask it</a> </li>
+                    <li><a>Connects </a> </li>
+                	<li><a href="#">Search</a> </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- <div class='popup-overlay' ng-click='pop_close()'></div>  -->
+
+        <div class="cont_wrapper">
+        	<div class="cont_container">
+            	
+                <!-- wrask interest pop up -->
+                <!-- <div class="wrask_it_popup"> -->
+                    <div class="popup-block">
+                        <!-- <div class="popup_head">
+                            <a ng-click="pop_close()" class="pp_close"><img src="img/pp-close.png">
+                            </a> -->
+                            <!-- wrask interest form -->
+                            <div class="popup_row">
+                            <form class="register_form " name="locationForm" ng-submit="submitForm(locationForm.$valid)" novalidate>
+
+                                <select ng-change="getLocationtype()" ng-model="locationtype" ng-options="selectlocation.value as selectlocation.name for selectlocation in selectlocations">
+                                    <option value="">Select type</option>
+                                </select>
+
+                                <select ng-show="showlocationtype" ng-model="state" ng-change="getlocation()" ng-options="state.name as state.name for state in usStates">
+                                    <option value="">select</option>
+                                </select>
+
+                                <input type="text" ng-model="selectedstate" value="{{mylocation}}">{{locationtype}}{{state}}
+
+                                <button class="answer_btn" type="submit" ng-click="submit"> Save location <a class="btn_arrow"><img src="img/btn-right.png"></a>
+                                </button>
+                            </form>
+
+                            </div>
+                            
+                        <!-- </div> -->
+                    </div>
+                <!-- </div> -->
+                <!-- wrask interest pop up -->
+
+
+                <div class="table_box">
+                	
+                    <div class="table_row" ng-repeat="wrask in wrasks">
+                    	<div class="profile_box">
+                        	<img src="img/profile_blank.png">
+                            </div>
+                            <div class="profile_data">
+                           <div class="profile_data_txt">
+                             <p> {{wrask.content}} </p>
+                            </div> 
+                            <div class="link_box">
+                           	  
+                                <div class="social-li">
+                                <a class="answer" ng-tap="$navigate.go('/answers/{{wrask.id}}')">Answer</a>
+                                <a href="#" class="sc_gplus"><img src="img/gplus.png"></a>
+                                <a href="#" class="twitter"><img src="img/twitter.png"></a>
+                                <a href="#" class="facebook"><img src="img/fb_icon.png"></a>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+      </div>
+      <div class="ftr_wrapper ">
+        	<div class="ftr_continer">
+            	<a href="#" class="ftr_links"><span><img src="img/ftr_icon1.png"></span>Location</a>
+                <a ng-tap="$navigate.go('/wraskinterest')" ng-click="pop_open()" class="ftr_links"><span><img src="img/ftr_icon2.png"></span>Wrask Interest</a>
+                <a ng-tap="$navigate.go('/info')" class="ftr_links"><span><img src="img/ftr_icon3.png"></span>Info</a>
+                <a ng-tap="$navigate.go('/settings')" class="ftr_links"><span><img src="img/ftr_icon4.png"></span>Settings</a>
+            </div>
+      </div>
+    </div>

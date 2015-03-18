@@ -1,0 +1,118 @@
+    <div class="website_wrapper">
+        <div class="hdr_wrapper">
+            <div class="hdr_continer">
+                <ul class="top-menu">
+                    <li><a ng-tap="$navigate.go('/home')" class="home"></a></li>
+                    <li><a ng-tap="$navigate.go('/myprofile')">Profile</a>  </li>
+                    <li><a ng-tap="$navigate.go('/wraskit')"> WRASK IT </a> </li>
+                    <li><a ng-tap="$navigate.go('/connects')">Connects </a> </li>
+                    <li><a ng-tap="$navigate.go('/search')">Search</a> </li>
+                </ul>
+            </div>
+        </div>
+
+    <!-- loading  -->
+    <div class="popup_main_new" ng-show="loading">
+        <div class="new_overlay"></div>
+        <div class="cont_wrapper">
+            <div class="cont_container">
+                <!-- wrask interest pop up -->
+                <div class="wrask_it_popup">
+                    <div class="loading-msg">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- loading closes -->
+
+        <div class="cont_wrapper">
+            <div class="cont_container">
+                <div class="table_box">
+                    <!-- <div class="table_row no-border">
+                        <button class="answer_btn" ng-tap="$navigate.go('/editprofile')">Edit my profile <a class="btn_arrow" href="#"><img src="img/btn-right.png"></a>
+                        </button>
+                    </div>
+                    
+                    <div class="table_row no-border">
+                        <button class="answer_btn" ng-tap="$navigate.go('/changePassword')">Change Password<a class="btn_arrow" href="#"><img src="img/btn-right.png"></a>
+                        </button>
+                    </div> -->
+                    <div class="table_row">
+                        
+                        <div class="profile_cover">
+                            <div class="profile_photo">
+                                <img src="img/pro_pic/{{userdetails.profilePic}}">
+                            </div>
+                            <div class="edit_link">
+                                <!-- <button class="edit_link_button" ng-tap="$navigate.go('/editprofile')">Edit my profile <a class="btn_arrow" href="#"><img src="img/btn-right.png"></a>
+                                </button> -->
+                                <a ng-tap="$navigate.go('/editprofile')" class="pro_link">Edit My Profile</a> <br>
+                                <!-- <a ng-tap="$navigate.go('/changeProfilePic')" class="pro_link">Change profile Photo</a> -->
+                            </div>
+                        </div>
+                            
+                        <div class="profile_data">
+                            <div class="right_row">
+                                <div class="profile_star"><img src="img/rating/{{rating}}.png" title="{{rating}}">
+                                </div>
+                                <div class="profile_follow">
+                                    <a ng-tap="$navigate.go('/connects/')" >Connects ( {{countmyconnects}} )  </a> 
+                                </div>
+                            </div>
+                            <div class="profile_data_txt">
+                             <h3>   {{userdetails.firstname}} &nbsp; {{userdetails.lastname}}</h3>
+                             <h2>   {{userdetails.city}}</h2>
+                             <h2>   {{userdetails.state}}</h2>
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    <div class="table_row">
+                            
+                            <div class="tble_row">
+                                <div class="tble_lft">
+                                    <div class="tble_like">
+                                    <div class="like">
+                                    </div>
+                                    <h1>I love</h1>
+                                    </div>
+                                    <div class="tble_row">
+                            <p id="ilove">{{userdetails.love}}</p>
+                            
+                            </div>
+                                </div>
+                                <div class="tble_lft">
+                                    <div class="tble_like">
+                                    <div class="like">
+                                    </div>
+                                    <h1>I hate</h1>
+                                    </div>
+                                    <div class="tble_row">
+                            <p>{{userdetails.hate}}</p>
+                            </div>
+                                </div>
+                            </div>
+                    </div>
+                    
+                    <div class="table_row no-border">
+                        <button class="answer_btn" ng-tap="$navigate.go('/myquestions/{{userId}}')">My Questions ({{countquestions}})<a class="btn_arrow" href="#"><img src="img/btn-right.png"></a>
+                        </button>
+                    </div>
+
+                    <div class="table_row no-border">
+                        <button class="answer_btn" ng-tap="$navigate.go('/myanswers/{{userId}}')">My Answers ({{countanswers}})<a class="btn_arrow" href="#"><img src="img/btn-right.png"></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="ftr_wrapper ">
+            <div class="ftr_continer">
+                <a href="#" class="ftr_links"><span><img src="img/ftr_icon1.png"></span>Location</a>
+                <a ng-tap="$navigate.go('/wraskinterest')" class="ftr_links"><span><img src="img/ftr_icon2.png"></span>WRASK</a>
+                <a ng-tap="$navigate.go('/info')" class="ftr_links"><span><img src="img/ftr_icon3.png"></span>Updates</a>
+                <a ng-tap="$navigate.go('/settings')" class="ftr_links"><span><img src="img/ftr_icon4.png"></span>Settings</a>
+            </div>
+      </div>
+    </div>
+    

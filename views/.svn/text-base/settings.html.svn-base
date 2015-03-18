@@ -1,0 +1,34 @@
+        <div class="website_wrapper">
+        <div class="hdr_wrapper">
+            <div class="hdr_continer">
+                <ul class="top-menu">
+                    <li><a ng-tap="$navigate.go('/home')" class="home"></a></li>
+                    <li><a ng-tap="$navigate.go('/myprofile')">Profile</a>  </li>
+                    <li><a ng-tap="$navigate.go('/wraskit')">Wrask it</a> </li>
+                    <li><a ng-tap="$navigate.go('/connects')">Connects </a> </li>
+                    <li><a ng-tap="$navigate.go('/search')">Search</a> </li>
+                </ul>
+            </div>
+        </div>
+        <div class="cont_wrapper">
+            <div class="cont_container">
+                <div class="form_box "> 
+                    <div class="form_row"></div>
+                    <div class="table_row no-border">
+                            <button class="answer_btn" ng-tap="$navigate.go('/changePassword')">Change Password<a class="btn_arrow" href="#"><img src="img/btn-right.png"></a> 
+                    </div>
+                    <div class="table_row no-border">
+                            <button class="answer_btn" ng-tap="logout()">Logout<a class="btn_arrow" href="#"><img src="img/btn-right.png"></a></button>
+                    </div>
+              </div>
+            </div>
+      </div>
+      <div class="ftr_wrapper ">
+            <div class="ftr_continer">
+                <a ng-tap="$navigate.go('/location')" class="ftr_links"><span><img src="img/ftr_icon1.png"></span>Location</a>
+                <a ng-tap="$navigate.go('/wraskinterest')" class="ftr_links"><span><img src="img/ftr_icon2.png"></span>Wrask</a>
+                <a ng-tap="$navigate.go('/info')" class="ftr_links"><span><img src="img/ftr_icon3.png"></span>Updates</a>
+                <a ng-tap="$navigate.go('/settings')" class="ftr_links"><span><img src="img/ftr_icon4.png"></span>Settings</a>
+            </div>
+      </div>
+    </div>

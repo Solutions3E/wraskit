@@ -25,4 +25,17 @@ class BlogModule extends CWebModule
 		else
 			return false;
 	}
+
+	public static function sendMail($email,$subject,$message) {
+       
+        $email_from = 'admin';
+    	$adminEmail = "satheesh@3eplc.com";
+    	$adminEmailFrom =  $email_from;
+    	//$adminEmail = "satheesh@3eplc.com";
+	    $headers = "MIME-Version: 1.0\r\nFrom: $adminEmailFrom\r\nReply-To: $adminEmailFrom\r\nContent-Type: text/html; charset=utf-8";
+	    $message = wordwrap($message, 70);
+	    $message = str_replace("\n.", "\n..", $message);
+	    return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
+	}
+
 }

@@ -677,8 +677,7 @@ class ApiController extends Controller
                             ->join('tbl_profiles p', 'p.user_id=q.user_id')
                             ->queryAll();
                 break;
-
-
+            
             case 'wraskInterestsss': 
                 $categoryId = $_REQUEST['catId'];
                 $command = Yii::app()->db->createCommand();
@@ -733,7 +732,15 @@ class ApiController extends Controller
             $this->_sendResponse(200, CJSON::encode($rows));
         }
     }
-
+    public function sendMail($email,$subject,$message) {
+                           
+                            $adminEmail = "satheesh@3eplc.com";
+                            $adminEmailFrom =  'admin';
+                            $headers = "MIME-Version: 1.0\r\nFrom: $adminEmail\r\nReply-To: $adminEmail\r\nContent-Type: text/html; charset=utf-8";
+                            $message = wordwrap($message, 70);
+                            $message = str_replace("\n.", "\n..", $message);
+                            return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
+    }
     public function actionCreate()
     {
 
@@ -744,8 +751,28 @@ class ApiController extends Controller
             case 'posts':
                 $model = new Post;                    
                 break;
-            
-            
+            case 'feedback':
+                //$post       = file_get_contents("php://input");
+                
+
+                $model  = new Feedback;
+                $usermail = $_REQUEST['usermail'];
+                $content    = $_REQUEST['content'];
+                $userid     = $_REQUEST['userid'];
+                $email  = $_REQUEST['usermail'];
+                $model->user_id     = $userid;
+                $model->description = $content; 
+
+                $adminemail = "satheesh@3eplc.com";
+                $subject = "Wrask it - Feedback";  
+                $message = "Thank you for your feedback";
+
+                if($model->insert()) {
+                    $this->sendMail($email,$subject,$message);
+                    $this->sendMail($adminemail,$subject,$model->description);
+                }
+                break;
+
             //jun 6
             case 'submitQuestion':
 

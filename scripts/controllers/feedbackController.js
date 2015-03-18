@@ -2,17 +2,27 @@
 myCustom.controller('feedbackController', function feedbackController($scope, $http, $window, $navigate) {
 
 	$scope.check_login();
+	$scope.loading=true;
+	var user_id = $scope.userId;
 
-		$http({
-				url: $scope.baseurl+"feedback/"+$scope.userId,
+	$scope.submitForm = function (isValid) {
+		if(isValid) {
+			var content = $scope.content;
+			var usermail = $scope.email;
+			$http({
+				url: $scope.baseurl+"feedback/",
 				method : 'POST',
-				params : {}
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				params : {content:content,userid:user_id,usermail:usermail}
 			}).success(function(data) {
-				alert("success");
-			}).error(function(data) {
-	        	alert("error");                
-	    });
+				alert("Thank you for your valuable feedback!");
+				//location.reload('/feedback/');
+			});
+		}
+	}	
+
 });
+
 myCustom.filter('unsafe', function($sce) {
 
     return function(val) {

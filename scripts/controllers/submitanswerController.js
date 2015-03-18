@@ -2,9 +2,9 @@
 myCustom.controller('submitanswerController', function submitanswerController($scope, $http, $window, $navigate, $routeParams) {
 
 	$scope.check_login();
-	$scope.loading=true;
-	$scope.qid = $routeParams.qid;
-	var user_id = $scope.userId;
+	$scope.loading 	=true;
+	$scope.qid 		= $routeParams.qid;
+	var user_id 	= $scope.userId;
 
 	$scope.submitForm = function (isValid) {
 		if(isValid) {
@@ -19,9 +19,6 @@ myCustom.controller('submitanswerController', function submitanswerController($s
 				$navigate.go("/answers/"+$scope.qid);
 			});
 		}
-		
-
 	}
 
-	
 });

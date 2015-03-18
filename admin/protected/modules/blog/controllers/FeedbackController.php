@@ -1,6 +1,6 @@
 <?php
 
-class BlogController extends Controller
+class FeedbackController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,14 +62,14 @@ class BlogController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Blog;
+		$model=new Feedback;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Blog']))
+		if(isset($_POST['Feedback']))
 		{
-			$model->attributes=$_POST['Blog'];
+			$model->attributes=$_POST['Feedback'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +91,9 @@ class BlogController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Blog']))
+		if(isset($_POST['Feedback']))
 		{
-			$model->attributes=$_POST['Blog'];
+			$model->attributes=$_POST['Feedback'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -122,7 +122,7 @@ class BlogController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Blog');
+		$dataProvider=new CActiveDataProvider('Feedback');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class BlogController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Blog('search');
+		$model=new Feedback('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Blog']))
-			$model->attributes=$_GET['Blog'];
+		if(isset($_GET['Feedback']))
+			$model->attributes=$_GET['Feedback'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -147,12 +147,12 @@ class BlogController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Blog the loaded model
+	 * @return Feedback the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Blog::model()->findByPk($id);
+		$model=Feedback::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -160,11 +160,11 @@ class BlogController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Blog $model the model to be validated
+	 * @param Feedback $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='blog-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='feedback-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

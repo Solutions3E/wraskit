@@ -58,15 +58,14 @@ myCustom.controller('answersController', function answersController($scope, $htt
 
 
 		$scope.wraskquestion = function () {
-
+			 $scope.loading = true;
 			$http({
 				url: $scope.baseurl+"question/"+$scope.qid,
 				method : 'GET',
 				params : {}
 			}).success(function(data) {
-				//var parsed = JSON.stringify(data);
+				 $scope.loading = false;
 				$scope.question = data;
-				//alert($scope.question.content);
 			});
 			};
 

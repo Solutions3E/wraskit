@@ -55,6 +55,7 @@
         array('label'=>'Wrask Interest', 'url'=>array('/post/category/admin'), 'visible'=>!Yii::app()->user->isGuest),
         array('label'=>'User Rights', 'url'=>array('/rights'), 'visible'=>!Yii::app()->user->isGuest),
         array('label'=>'Blog', 'url'=>array('/blog/blog/admin'), 'visible'=>!Yii::app()->user->isGuest),
+        array('label'=>'Feedback', 'url'=>array('/blog/feedback/admin'), 'visible'=>!Yii::app()->user->isGuest),
         array('url'=>Yii::app()->getModule('user')->loginUrl, 'label'=>Yii::app()->getModule('user')->t("Login"), 'visible'=>Yii::app()->user->isGuest),
         array('url'=>Yii::app()->getModule('user')->registrationUrl, 'label'=>Yii::app()->getModule('user')->t("Register"), 'visible'=>Yii::app()->user->isGuest),
         array('url'=>Yii::app()->getModule('user')->profileUrl, 'label'=>Yii::app()->getModule('user')->t("User Manager"), 'visible'=>!Yii::app()->user->isGuest),

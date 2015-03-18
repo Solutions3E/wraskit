@@ -1,15 +1,15 @@
 <?php
-/* @var $this BlogController */
-/* @var $model Blog */
+/* @var $this FeedbackController */
+/* @var $model Feedback */
 
 $this->breadcrumbs=array(
-	'Blogs'=>array('index'),
-	'Manage',
+	'Home'=>array('/'),
+	'Feedback',
 );
 
 $this->menu=array(
-	array('label'=>'List Blog', 'url'=>array('index')),
-	array('label'=>'Create Blog', 'url'=>array('create')),
+	/*array('label'=>'List Feedback', 'url'=>array('index')),
+	array('label'=>'Create Feedback', 'url'=>array('create')),*/
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -18,7 +18,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#blog-grid').yiiGridView('update', {
+	$('#feedback-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -26,26 +26,23 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Blogs</h1>
+<h1>Manage Feedbacks</h1>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
+<?php //echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
+<?php /*$this->renderPartial('_search',array(
 	'model'=>$model,
-)); ?>
+));*/ ?>
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'blog-grid',
+	'id'=>'feedback-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'title',
-		'description',
 		'user_id',
-		'category',
-		'created_time',
+		'description',
 		array(
 			'class'=>'CButtonColumn',
 		),

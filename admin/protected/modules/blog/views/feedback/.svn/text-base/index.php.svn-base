@@ -1,18 +1,18 @@
 <?php
-/* @var $this BlogController */
+/* @var $this FeedbackController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Blogs',
+	'Feedbacks',
 );
 
 $this->menu=array(
-	array('label'=>'Create Blog', 'url'=>array('create')),
-	array('label'=>'Manage Blog', 'url'=>array('admin')),
+	array('label'=>'Create Feedback', 'url'=>array('create')),
+	array('label'=>'Manage Feedback', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Blogs</h1>
+<h1>Feedbacks</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

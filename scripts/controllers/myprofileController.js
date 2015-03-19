@@ -6,6 +6,9 @@ myCustom.controller('myprofileController', function myprofileController($scope, 
 	$scope.qid = $routeParams.qid;
 	var user_id = $scope.userId;
 
+	$scope.go = function (url) {
+      $location.path(url);
+    }
 		$http({
 			url: $scope.baseurl+"userDetails/"+$scope.userId,
 			method : 'GET',

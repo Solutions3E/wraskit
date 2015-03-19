@@ -18,6 +18,7 @@ myCustom.controller('editprofileController', function editprofileController($sco
 	        $scope.hate = data.hate;
 	        $scope.city = data.city;
 	        $scope.state = data.state;
+	        $scope.loading = false;
 	    })
 	    .error(function(data) {
 	        alert("error");                
@@ -29,13 +30,14 @@ myCustom.controller('editprofileController', function editprofileController($sco
 
 	$scope.submitForm = function (isValid) {
 		if(isValid) {
-
+			$scope.loading=true;
 			$http({
 				url: $scope.baseurl+"update_profile/"+$scope.userId,
 				method : 'GET',
 				params : {fname:$scope.firstname,lname:$scope.lastname,email:$scope.email,love:$scope.love,hate:$scope.hate,city:$scope.city,state:$scope.state}
 			}).success(function(data) {
-				//alert("Profile updated successfully");
+				$scope.loading=false;
+				alert("Profile updated successfully");
 				$navigate.go('/myprofile');
 			})
 			.error(function(data) {

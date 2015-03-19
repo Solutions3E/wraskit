@@ -1,13 +1,23 @@
 'use strict';
 myCustom.controller('settingsController', function settingsController($scope, $http, $window, $navigate) {
 
-	$scope.loading=false;
-	$scope.userId = localStorage.getItem("userId");
-	$scope.logout = function () {
+	$scope.loading =true;
+	$scope.userId  = localStorage.getItem("userId");
+	$scope.logout  = function () {
 		localStorage.clear();
 	    $navigate.go('/login');
 	}
 	
+
+	$http({
+		url: $scope.baseurl+"privacyPolicy/",
+		method : 'GET',
+		params : {}
+		}).success(function(data) {
+			$scope.privacy = data[0].description;
+			$scope.loading = false;
+	});
+
 	$scope.submitForm = function (isValid) {
 		if(isValid) {
 			$scope.loading=true;
@@ -21,7 +31,9 @@ myCustom.controller('settingsController', function settingsController($scope, $h
 			}).success(function(data) {
 				$scope.loading=false;
 				alert("Thank you for your feedback!");
-				location.reload('/settings/');
+				//location.reload('/settings/');
+				$scope.feedback = false;
+				$scope.content = null;
 			});
 		}
 	}

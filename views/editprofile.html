@@ -4,12 +4,28 @@
                 <ul class="top-menu">
                     <li><a ng-tap="$navigate.go('/home')" class="home"></a></li>
                     <li><a ng-tap="$navigate.go('/myprofile')">Profile</a>  </li>
-                    <li><a ng-tap="$navigate.go('/wraskit')">Wrask it</a> </li>
+                    <li><a ng-tap="$navigate.go('/wraskit')"> WRASK IT </a> </li>
                     <li><a ng-tap="$navigate.go('/connects')">Connects </a> </li>
                     <li><a ng-tap="$navigate.go('/search')">Search</a> </li>
                 </ul>
             </div>
         </div>
+
+        <!-- loading  -->
+        <div class="popup_main_new" ng-show="loading">
+            <div class="popup-overlay"></div>
+            <div class="cont_wrapper">
+                <div class="cont_container">
+                    <!-- wrask interest pop up -->
+                    <div class="wrask_it_popup">
+                        <div class="loading-msg"> Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- loading closes -->
+
+
         <div class="cont_wrapper">
             <div class="cont_container">
                 <div class="form_box "> 
@@ -66,7 +82,7 @@
       <div class="ftr_wrapper ">
             <div class="ftr_continer">
                 <a href="#" class="ftr_links"><span><img src="img/ftr_icon1.png"></span>Location</a>
-                <a ng-tap="$navigate.go('/wraskinterest')" class="ftr_links"><span><img src="img/ftr_icon2.png"></span>Wrask</a>
+                <a ng-tap="$navigate.go('/wraskinterest')" class="ftr_links"><span><img src="img/ftr_icon2.png"></span> WRASK </a>
                 <a ng-tap="$navigate.go('/info')" class="ftr_links"><span><img src="img/ftr_icon3.png"></span>Updates</a>
                 <a ng-tap="$navigate.go('/settings')" class="ftr_links"><span><img src="img/ftr_icon4.png"></span>Settings</a>
             </div>

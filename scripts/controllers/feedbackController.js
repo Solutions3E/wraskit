@@ -2,11 +2,12 @@
 myCustom.controller('feedbackController', function feedbackController($scope, $http, $window, $navigate) {
 
 	$scope.check_login();
-	$scope.loading=true;
+	//$scope.loading=true;
 	var user_id = $scope.userId;
 
 	$scope.submitForm = function (isValid) {
 		if(isValid) {
+			$scope.loading=true;
 			var content = $scope.content;
 			var usermail = $scope.email;
 			$http({
@@ -15,8 +16,9 @@ myCustom.controller('feedbackController', function feedbackController($scope, $h
 				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				params : {content:content,userid:user_id,usermail:usermail}
 			}).success(function(data) {
-				alert("Thank you for your valuable feedback!");
-				//location.reload('/feedback/');
+				$scope.loading=false;
+				alert("Thank you for your feedback!");
+				location.reload('/feedback/');
 			});
 		}
 	}	

@@ -1,11 +1,31 @@
 'use strict';
 myCustom.controller('settingsController', function settingsController($scope, $http, $window, $navigate) {
 
-	$scope.loading=true;
+	$scope.loading=false;
+	$scope.userId = localStorage.getItem("userId");
 	$scope.logout = function () {
 		localStorage.clear();
 	    $navigate.go('/login');
 	}
+	
+	$scope.submitForm = function (isValid) {
+		if(isValid) {
+			$scope.loading=true;
+			var content = $scope.content;
+			/*var usermail = $scope.email;*/
+			$http({
+				url: $scope.baseurl+"feedback/",
+				method : 'POST',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				params : {content:content,userid:$scope.userId}
+			}).success(function(data) {
+				$scope.loading=false;
+				alert("Thank you for your feedback!");
+				location.reload('/settings/');
+			});
+		}
+	}
+
 
 	/*$scope.submitForm = function(isValid) {
 		

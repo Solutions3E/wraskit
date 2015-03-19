@@ -754,12 +754,15 @@ class ApiController extends Controller
             case 'feedback':
                 //$post       = file_get_contents("php://input");
                 
-
                 $model  = new Feedback;
-                $usermail = $_REQUEST['usermail'];
+                /*$usermail = $_REQUEST['usermail'];*/
                 $content    = $_REQUEST['content'];
                 $userid     = $_REQUEST['userid'];
-                $email  = $_REQUEST['usermail'];
+                
+                $users = User::model()->findByPk($userid);
+                $email = $users['email'];
+
+                //$email  = $_REQUEST['usermail'];
                 $model->user_id     = $userid;
                 $model->description = $content; 
 

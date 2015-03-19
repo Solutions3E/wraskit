@@ -711,6 +711,10 @@ class ApiController extends Controller
                 $models     = Category::model()->findAll($criteria);
                 break;
             
+            case 'privacyPolicy':
+                $models = Privacy::model()->findAll();
+                break;
+
             default:
                 // Model not implemented error
                 $this->_sendResponse(501, sprintf(

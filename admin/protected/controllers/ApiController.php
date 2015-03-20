@@ -448,6 +448,7 @@ class ApiController extends Controller
                         $i++;
                 }
                 break;
+
             case 'getBlog':
                 $model = Blog::model()->findAll();
                 break;
@@ -458,6 +459,7 @@ class ApiController extends Controller
                 $criteria->addCondition("id=$id");
                 $model    = Post::model()->findAll($criteria);
                 break;
+
 
             //********INSERTING DATAS IN TABLES*********   
 
@@ -484,6 +486,20 @@ class ApiController extends Controller
                 $update = $command->update('tbl_users', array(
                                             'wraskpoints'=>$points,
                                         ), 'id=:id', array(':id'=>$userid));
+                break;
+
+            
+             case 'saveLocation':
+                
+                $model = User::model()->findByPk($id);
+                $model->location = $_REQUEST['location'];
+                
+                if($model->save()){
+                    echo "saved";
+                } else {
+                    echo "error";
+                }
+
                 break;
 
             case 'likeAnswer':
@@ -816,20 +832,24 @@ class ApiController extends Controller
 
             case 'changeProfilePic':
 
-                $post       = file_get_contents("php://input");
-                //$model      = new Post;
-
-                $data = CJSON::decode($post, true);
-                print_r($data);
-                //echo $temp = $data['pic'];
-                die;
-                $file1 = explode('\\',$temp);
-                //print_r($file1);
-                echo $file = $file1['2'];
-                //die;
-                move_uploaded_file($temp, "../images/" . $file);
+                    
+                $userid = $_REQUEST['userid'];
                 
-                die;
+                $imagepath      = "../img/pro_pic/";
+                $uploads_dir    = Yii::getPathOfAlias('webroot').'/'.$imagepath;
+
+                $tmp_name       = $_FILES["file"]["tmp_name"];
+                $name           = rand().$_FILES["file"]["name"];
+                move_uploaded_file($tmp_name, "$uploads_dir/$name");
+
+
+                $model              = Profile::model()->findByPk($userid);
+                $model->profilePic  = $name; 
+                if($model->save()) {
+                    echo "image saved";
+                } else {
+                    echo "error";
+                }
                 break;
 
             case 'wraskInterest':

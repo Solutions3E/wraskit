@@ -11,6 +11,20 @@
             </div>
         </div>
         
+        <!-- loading  -->
+        <div class="popup_main_new" ng-show="loading">
+            <div class="new_overlay"></div>
+            <div class="cont_wrapper">
+                <div class="cont_container">
+                    <!-- wrask interest pop up -->
+                    <div class="wrask_it_popup">
+                        <div class="loading-msg">Loading...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- loading closes -->
+        
         <!-- <div class='popup-overlay' ng-click='pop_close()'></div>  -->
 
         <div class="cont_wrapper">
@@ -30,13 +44,13 @@
                                     <option value="">Select type</option>
                                 </select>
 
-                                <select ng-show="showlocationtype" ng-model="state" ng-change="getlocation()" ng-options="state.name as state.name for state in usStates">
+                                <select ng-show="showlocationtype" ng-model="state" ng-change="getlocation()" ng-options="state.abbreviation as state.name for state in usStates">
                                     <option value="">select</option>
                                 </select>
 
-                                <input type="text" ng-model="selectedstate" value="{{mylocation}}">{{locationtype}}{{state}}
+                                <input type="text" ng-model="selectedstate" value="{{mylocation}}"><!-- {{locationtype}}{{state}} -->
 
-                                <button class="answer_btn" type="submit" ng-click="submit"> Save location <a class="btn_arrow"><img src="img/btn-right.png"></a>
+                                <button class="answer_btn" type="submit" ng-click="submit()"> Save location <a class="btn_arrow"><img src="img/btn-right.png"></a>
                                 </button>
                             </form>
 
@@ -76,7 +90,7 @@
       </div>
       <div class="ftr_wrapper ">
         	<div class="ftr_continer">
-            	<a href="#" class="ftr_links"><span><img src="img/ftr_icon1.png"></span>Location</a>
+            	<a ng-tap="$navigate.go('/location')" class="ftr_links"><span><img src="img/ftr_icon1.png"></span>Location</a>
                 <a ng-tap="$navigate.go('/wraskinterest')" ng-click="pop_open()" class="ftr_links"><span><img src="img/ftr_icon2.png"></span>Wrask Interest</a>
                 <a ng-tap="$navigate.go('/info')" class="ftr_links"><span><img src="img/ftr_icon3.png"></span>Info</a>
                 <a ng-tap="$navigate.go('/settings')" class="ftr_links"><span><img src="img/ftr_icon4.png"></span>Settings</a>

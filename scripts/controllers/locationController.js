@@ -2,22 +2,22 @@
 myCustom.controller('locationController', function locationController($scope, $http, $window, $navigate) {
 
 	$scope.check_login();
-	$scope.loading=true;
+	$scope.loading=false;
 
 	$scope.selectlocations = [
-    	{name:'Use my current location',value:'0'},
+    	/*{name:'Use my current location',value:'0'},*/
     	{name:'Select from the lists',value:'1'},
   	];
 
   	$scope.getLocationtype = function () {
   		//alert($scope.locationtype);
   		if($scope.locationtype == 1) {
-  			alert($scope.locationtype);
+  			//alert($scope.locationtype);
   			$scope.showlocationtype = '1';
 
   			}
   			else {
-				$http({
+				/*$http({
 						url: 'http://api.ipinfodb.com/v3/ip-city/?key=edfe3bb8934d58f3e0007ccd9b9d185d00ce5a7eb8f6dbe959c8eb5a119fe8a3&ip=74.125.45.100&format=json',
 						//url    : '',
 						method : 'GET',
@@ -27,13 +27,28 @@ myCustom.controller('locationController', function locationController($scope, $h
 						$scope.locationtype = 'kerala';
 					}).error(function(data) {
 			        	alert("error api");                
-			    });
+			    });*/
 			}
   		}
 		//location test
 				
 		$scope.submitForm = function () {
-			alert($scope.selectedstate);
+			$scope.loading=true;
+			var location = $scope.state;
+			$http({
+						url : $scope.baseurl+"saveLocation/"+$scope.userId,
+						method : 'GET',
+						//crossdomain : true,
+						params : {location:location}
+					}).success(function(data) {
+						$scope.loading=false;
+						alert("saved location");
+						$navigate.go('/home');
+						//$scope.locationtype = 'kerala';
+					}).error(function(data) {
+			        	$scope.loading=false;
+			        	alert("Something went wrong, try again!");                
+			});
 		}
 			
 

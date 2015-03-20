@@ -10,32 +10,51 @@
                 </ul>
             </div>
         </div>
+
+    <!-- loading  -->
+    <div class="popup_main_new" ng-show="loading">
+        <div class="popup-overlay"></div>
+        <div class="cont_wrapper">
+            <div class="cont_container">
+                <!-- wrask interest pop up -->
+                <div class="wrask_it_popup">
+                    <div class="loading-msg">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- loading closes -->
+
+
         <div class="cont_wrapper">
             <div class="cont_container">
                 <div class="form_box "> 
                     <div class="form_row" flow-init></div>
                    
-                    <form class="register_form " method="post" enctype="multipart/form-data" action="upload.php" id="change_pro_pic" name="userForm">
+                    <form class="register_form " method="post" enctype="multipart/form-data" id="change_pro_pic" name="userForm">
                         <fieldset> 
                             
                             <div class="form_field_wrapper">
-                                <input type="file" name="uploaded_file" placeholder="Select Profile Photo" file-model="myFile" class="field_log">
+                                   <button class="sign_in uploadImagepress" type="submit" ng-click="uploadImagepress();"> Update Profile Photo <a class="btn_arrow"><img src="img/btn-right.png"></a>
+                            </button>
+                                <input type="file" name="uploaded_file"  ng-file-select ng-file-change="submitForm($files)" placeholder="Select Profile Photo" file-model="myFile" class="field_log" style="visibility:hidden;" >
                             </div>
 
                             <!-- <div class="form_field_wrapper">
                                 <input type="file" name="uploaded_file1" accept="image/*" capture="camera" placeholder="Take Photo" file-model="myFile" class="field_log">
                             </div> -->
+                            <!-- <input type="text" ng-model="userId"> -->
                             
                             <div class="form_field_wrapper">
-                            <button class="sign_in" type="submit"> Update Profile Photo<a class="btn_arrow"><img src="img/btn-right.png"></a>
-                            </button>
+                            <!-- <button class="sign_in" type="submit" onClick="uploadImage()"> Update Profile Photo<a class="btn_arrow"><img src="img/btn-right.png"></a>
+                            </button> -->
                             </div>
 
-                            <input style="display:none" type="text" name="current_uesr_id" ng-model="current_uesr_id"/>
+                            <!-- <input style="display:none" type="text" name="current_uesr_id" ng-model="current_uesr_id"/> -->
                             
                         </fieldset>
                     </form>
-                  
+
               </div>
             </div>
       </div>

@@ -1,7 +1,7 @@
 'use strict';
 myCustom.controller('registerController', function registerController($scope, $http, $window, $navigate) {
 
-	$scope.loading=true;
+	
 	$scope.email_exist = "";
 	$scope.user_exist = "";
 
@@ -13,6 +13,7 @@ myCustom.controller('registerController', function registerController($scope, $h
 			alert("Password and confirm password does not match");
 		}
 		if(isValid) {
+			$scope.loading=true;
 			var firstname= $scope.firstname;
 			var lastname = $scope.lastname;
 			var email 	 = $scope.email;
@@ -25,7 +26,7 @@ myCustom.controller('registerController', function registerController($scope, $h
 		    	method: "GET",
 		    	params: {firstname:firstname, lastname:lastname, email:email, username: username, password: password}
 	 		})	.success(function(data){
-				//alert(JSON.stringify(data));
+				$scope.loading=false;
 				if(data.email_exist) {
 					//alert(data.email_exist);
 					$scope.email_exist = data.email_exist;
@@ -41,7 +42,8 @@ myCustom.controller('registerController', function registerController($scope, $h
 				
 			})
 			.error(function(data) {
-		            alert("Something went wrong, please try again!");                
+		            alert("Something went wrong, please try again!");    
+		            $scope.loading  =false;            
 		        })
 		        .then(function(data) {
 			});

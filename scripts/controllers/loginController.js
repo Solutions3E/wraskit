@@ -2,12 +2,12 @@
 myCustom.controller('loginController', function loginController($scope, $http, $window, $navigate) {
 
 	$scope.check_login();
-	$scope.loading=true;
+	
 	if($scope.userId) {
 		$navigate.go('/home');
 	}
 	$scope.submitForm = function(isValid) {
-		
+		$scope.loading=true;
 		if(isValid) {
 			var user = $scope.username;
 			var pass = $scope.password;
@@ -17,7 +17,7 @@ myCustom.controller('loginController', function loginController($scope, $http, $
 	    	method: "GET",
 	    	params: {username: user, password: pass}
 	 		})	.success(function(data){
-				//alert(JSON.stringify(data));
+				$scope.loading  =false;
 				$scope.username =data.username;
 				$scope.userId 	=data.id;
 				localStorage.setItem("userId", data.id);
@@ -25,7 +25,8 @@ myCustom.controller('loginController', function loginController($scope, $http, $
 				$navigate.go("/home");
 			})
 			.error(function(data) {
-		            alert("Invalid username or password");                
+		            alert("Invalid username or password"); 
+		            $scope.loading  =false;               
 		        })
 		        .then(function(data) {
 			});

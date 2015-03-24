@@ -1,6 +1,7 @@
 'use strict';
-var myCustom = angular.module('myApp', ['ajoslin.mobile-navigate','ngRoute','angular-carousel','fundoo.services','angularFileUpload']);
-
+var myCustom = angular.module('myApp', ['ajoslin.mobile-navigate','ngRoute','angular-carousel','fundoo.services','angularFileUpload','ngFacebook']);
+//var fbAppId='1441504876114178';
+var fbAppId='1568536133414519';
 myCustom.config(['$httpProvider', function($httpProvider) {
         $httpProvider.defaults.useXDomain = true;
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -94,7 +95,29 @@ myCustom.config(function($routeProvider) {
   });
 });
 
+myCustom.config(function( $facebookProvider ) {
+    //$facebookProvider.setAppId('1441504876114178');
+    $facebookProvider.setAppId(fbAppId);
+});
+
 myCustom.run(function($route, $http, $templateCache) {
+  (function(){
+     // If we've already installed the SDK, we're done
+     if (document.getElementById('facebook-jssdk')) {return;}
+
+     // Get the first script element, which we'll use to find the parent node
+     var firstScriptElement = document.getElementsByTagName('script')[0];
+
+     // Create a new script element and set its id
+     var facebookJS = document.createElement('script'); 
+     facebookJS.id = 'facebook-jssdk';
+
+     // Set the new script's source to the source of the Facebook JS SDK
+     facebookJS.src = '//connect.facebook.net/en_US/all.js';
+
+     // Insert the Facebook JS SDK into the DOM
+     firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+   }());
   angular.forEach($route.routes, function(r) {
     if (r.templateUrl) { 
       $http.get(r.templateUrl, {cache: $templateCache});
@@ -108,6 +131,8 @@ myCustom.controller('MainCtrl', function($scope, $navigate, $templateCache) {
   //$scope.baseurl = "http://demo1.host3e.com/projects/2014/wraskit/admin/index.php/api/";
   $scope.siteurl  = "http://localhost/projects/wraskadmin/";
   //$scope.siteurl  = "http://www.demo1.host3e.com/projects/2014/wraskit/";
+  
+  $scope.fbAppId=fbAppId;
   $scope.check_login = function() {
     $scope.userId = localStorage.getItem("userId");
     if( ($scope.userId == null) || ($scope.userId == 0)) {

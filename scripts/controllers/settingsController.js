@@ -2,10 +2,12 @@
 myCustom.controller('settingsController', function settingsController($scope, $http, $window, $navigate) {
 
 	$scope.loading =true;
+	$scope.check_login();
 	$scope.userId  = localStorage.getItem("userId");
 	$scope.logout  = function () {
 		localStorage.clear();
-	    $navigate.go('/login');
+	    //$navigate.go('/login');
+	    location.reload('/login/');
 	}
 	
 

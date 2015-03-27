@@ -238,6 +238,15 @@ class ApiController extends Controller
                         ->where('id=:id', array(':id'=>$id))
                         ->queryRow();
                 break;
+            
+            case 'userNotify':
+                $public = Notifications::model()->findAllByAttributes(array('userid'=>$id,'type'=>1,'status'=>1));
+                $direct = Notifications::model()->findAllByAttributes(array('userid'=>$id,'type'=>2,'status'=>1));
+                $model = array();
+                $model[0] = count($public);
+                $model[1] = count($direct);
+                break;
+
             case 'connectInUsers':
                 
                 $model = array();
@@ -477,6 +486,14 @@ class ApiController extends Controller
 
                 $model->insert();
 
+                 $model_questions= Yii::app()->db->createCommand("select u.device_type,u.device_id,u.id from post p join tbl_users u ON (u.id = p.user_id)
+        where p.id=$model->postId")->queryAll();
+
+                 foreach($model_questions as $user) {
+                    $device_id = $user['device_id'];
+                    $device_type = $user['device_type'];
+                 }
+
                 //update points
                 $result = User::model()->findByPk($userid);
                 $points = $result->wraskpoints;
@@ -486,6 +503,40 @@ class ApiController extends Controller
                 $update = $command->update('tbl_users', array(
                                             'wraskpoints'=>$points,
                                         ), 'id=:id', array(':id'=>$userid));
+
+                if($device_type == "Android") {
+
+                        $registrationIds = array($device_id);
+                        // prep the bundle
+                        $msg = array
+                        (
+                            'message'       => "New WRASK has been posted",
+                            'title'         => "WRASK IT",
+                            'subtitle'      => 'WRASK IT APP',
+                            'tickerText'    => 'Dude',
+                            'vibrate'   => 1,
+                            'sound'     => 1
+                        );
+                        $fields = array
+                        (
+                            'registration_ids'  => $registrationIds,
+                            'data'              => $msg
+                        );
+                        $headers = array
+                        (
+                            'Authorization: key='. 'AIzaSyBXrGGF5N0WtgOc4-D2AiU7E-z3seiwbE0',
+                            'Content-Type: application/json'
+                        );
+                        $ch = curl_init();
+                        curl_setopt( $ch,CURLOPT_URL, 'https://android.googleapis.com/gcm/send' );
+                        curl_setopt( $ch,CURLOPT_POST, true );
+                        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+                        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+                        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+                        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+                        $result = curl_exec($ch );
+                        curl_close( $ch );
+                }
                 break;
 
             
@@ -503,12 +554,13 @@ class ApiController extends Controller
                 break;
 
             case 'likeAnswer':
-                $model   = Comments::model()->findByPk($id);
-                $likes   = $model->likes + 1;
+                $data   = Comments::model()->findByPk($id);
+                $likes   = $data->likes + 1;
                 $command = Yii::app()->db->createCommand();
-                $model = $command->update('comments', array(
+                $result = $command->update('comments', array(
                                             'likes'=>$likes,
                                         ), 'id=:id', array(':id'=>$id));
+                $model = Comments::model()->findByPk($id);
                 break;
 
             case 'dislikeAnswer':
@@ -554,7 +606,10 @@ class ApiController extends Controller
                     $model->password = md5($_GET['password']);
                     $model->email    = $_GET['email'];
                     $model->wraskpoints = '0';
-
+                    $model->device_id   = "";
+                    $model->device_type = "";
+                    if(isset($_REQUEST['device_id'])) {$model->device_id        = $_REQUEST['device_id'];}
+                    if(isset($_REQUEST['device_type'])) {$model->device_type    = $_REQUEST['device_type'];}
 
                     $profile->firstname = $_REQUEST['firstname'];
                     $profile->lastname  = $_REQUEST['lastname'];
@@ -630,9 +685,14 @@ class ApiController extends Controller
                 $city  = $_REQUEST['city'];
                 $state = $_REQUEST['state'];
 
+                /*$device_id = $_REQUEST['device_id'];
+                $device_type = $_REQUEST['device_type'];*/
+
                 $command = Yii::app()->db->createCommand();
                 $model = $command->update('tbl_users', array(
                                             'email'=>$email,
+                                            /*'device_id'=>$device_id,
+                                            'device_type'=>$device_type,*/
                                         ), 'id=:id', array(':id'=>$id));
 
                 $command = Yii::app()->db->createCommand();
@@ -694,6 +754,15 @@ class ApiController extends Controller
                             ->queryAll();
                 break;
             
+            case 'notifyClick':
+                $command = Yii::app()->db->createCommand();
+
+                $model = $command->update('notifications', array(
+                                            'status'=>0,
+                                        ), 'userid=:userid', array(':userid'=>$id));
+                print_r($model); die;
+                break;
+
             case 'wraskInterestsss': 
                 $categoryId = $_REQUEST['catId'];
                 $command = Yii::app()->db->createCommand();
@@ -727,6 +796,16 @@ class ApiController extends Controller
                 $models     = Category::model()->findAll($criteria);
                 break;
             
+
+            case 'sendnotification':
+
+                // API access key from Google API's Console
+            $message = "test";
+            $subject = "title";
+             $models =   $this->sendPushnotification($message,$subject);
+             break; 
+
+
             case 'privacyPolicy':
                 $models = Privacy::model()->findAll();
                 break;
@@ -752,11 +831,47 @@ class ApiController extends Controller
             $this->_sendResponse(200, CJSON::encode($rows));
         }
     }
+
+    public function sendPushnotification($message,$title) {
+        // API access key from Google API's Console
+                define( 'API_ACCESS_KEY', 'AIzaSyBXrGGF5N0WtgOc4-D2AiU7E-z3seiwbE0' );
+                $registrationIds = array("APA91bGWXd0kQ-BwcBu__nAP508N_HT3E8-9NsMom1_w_Ipxckqu7OeXCAinqwomyd4Yxa_S5n_kAXFgvSAoxUI_dmyxBkwQR5hz_RUixYW-dqt0LSjRBWt7yPCEpbw-0OI5oRCm8mOCUTGY7JCeBwIVZ1u5hT6FRw" );
+                // prep the bundle
+                $msg = array
+                (
+                    'message'       => $message,
+                    'title'         => $title,
+                    'subtitle'      => 'Vanakkam Satheesh',
+                    'tickerText'    => 'Dude',
+                    'vibrate'   => 1,
+                    'sound'     => 1
+                );
+                $fields = array
+                (
+                    'registration_ids'  => $registrationIds,
+                    'data'              => $msg
+                );
+                $headers = array
+                (
+                    'Authorization: key=' . API_ACCESS_KEY,
+                    'Content-Type: application/json'
+                );
+                $ch = curl_init();
+                curl_setopt( $ch,CURLOPT_URL, 'https://android.googleapis.com/gcm/send' );
+                curl_setopt( $ch,CURLOPT_POST, true );
+                curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+                curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+                curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+                curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+                $result = curl_exec($ch );
+                curl_close( $ch );
+                echo $result;
+    }
     public function sendMail($email,$subject,$message) {
                            
                             $adminEmail = "satheesh@3eplc.com";
-                            $adminEmailFrom =  'admin';
-                            $headers = "MIME-Version: 1.0\r\nFrom: $adminEmail\r\nReply-To: $adminEmail\r\nContent-Type: text/html; charset=utf-8";
+                            $adminEmailFrom =  'wraskitapp@gmail.com';
+                            $headers = "MIME-Version: 1.0\r\nFrom: $adminEmailFrom\r\nReply-To: $adminEmailFrom\r\nContent-Type: text/html; charset=utf-8";
                             $message = wordwrap($message, 70);
                             $message = str_replace("\n.", "\n..", $message);
                             return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
@@ -787,7 +902,7 @@ class ApiController extends Controller
                 $model->description = $content; 
 
                 $adminemail = "satheesh@3eplc.com";
-                $subject = "Wrask it - Feedback";  
+                $subject = "WRASK IT - Feedback";  
                 $message = "Thank you for your feedback";
 
                 if($model->insert()) {
@@ -802,6 +917,8 @@ class ApiController extends Controller
                 $post       = file_get_contents("php://input");
                 $model      = new Post;
                 $directpost = new DirectPost();
+                $useridarray =array();
+                $emailarray  ="";
 
                 $data = CJSON::decode($post, true);
                 
@@ -810,6 +927,37 @@ class ApiController extends Controller
                 $model->user_id     = $data['userid'];
                 $model->category_id = $data['catId'];
                 $model->privacy     = $data['privacy'];
+
+                
+                //sendgin email to all users if public wrask
+                if($data['privacy'] == '1'){    
+                    $criteria = new CDbCriteria;
+                    $criteria->select = "userId";
+                    $criteria->addCondition("categoryId = $model->category_id");
+                    $userids    = WraskInterest::model()->findAll($criteria);
+
+                    foreach($userids as $userid){
+                        $useridarray[] = $userid['userId'];
+                    }
+                    //add notifications for users
+                    for($i = 0; $i < count($useridarray); $i++){
+                        $modelnotity  = new Notifications;
+                        $modelnotity->type   = 1;
+                        $modelnotity->status = 1;
+                        $modelnotity->userid = $useridarray[$i];
+                        $modelnotity->save();
+                    }
+                    $criteria1 = new CDbCriteria;
+                    $criteria1->select = "t.email";
+                    $criteria1->addInCondition('id',$useridarray);
+                    $emails    = User::model()->findAll($criteria1);
+
+                    foreach($emails as $email){
+                        $emailarray.= $email['email'].',';
+                        $device_ids[] = $email['device_id'];
+                        $device_types[] = $email['device_type'];
+                    }
+                }
 
                 //update points
                 $userid = $model->user_id;
@@ -821,14 +969,78 @@ class ApiController extends Controller
                 $update = $command->update('tbl_users', array(
                                             'wraskpoints'=>$points,
                                         ), 'id=:id', array(':id'=>$userid));
-                //for direct user
                 $model->insert();
+
+                //for direct user
                 if($data['privacy'] == '2'){
                     $directpost->directuserId = $data['direct_user'];
                     $directpost->postId       = $model->id;
                     $directpost->insert();
+                    $emails    = User::model()->findByPk($directpost->directuserId,array('select' => 'email'));
+                    $emailarray = $emails->email;
+                    $device_ids[] = $emails->device_id;
+                    $device_types[] = $emails->device_type;
+
+                    // save status fon notifications
+                    $modelnotity  = new Notifications;
+                    $modelnotity->type   = 2;
+                    $modelnotity->status = 1;
+                    $modelnotity->userid = $directpost->directuserId;
+                    
+                    $modelnotity->save();
                 }
-                break;
+                //sending emails to receivers
+                $email      = $emailarray;
+                $subject    = "WRAKS IT - New WRASK has been posted";  
+                $message    = $model->content;
+                $this->sendMail($email,$subject,$message);
+            
+                //push notification android
+                /*$title = "WRASK IT";
+                $subject = "New wrask posted";
+                $model =   $this->sendPushnotification($title,$subject);*/
+                
+                for($i=0; $i<count($device_ids); $i++) {
+
+                   if($device_types[$i] == 'Android') {
+                       //define( 'API_ACCESS_KEY', 'AIzaSyBXrGGF5N0WtgOc4-D2AiU7E-z3seiwbE0');
+                        //$registrationIds = array("APA91bGWXd0kQ-BwcBu__nAP508N_HT3E8-9NsMom1_w_Ipxckqu7OeXCAinqwomyd4Yxa_S5n_kAXFgvSAoxUI_dmyxBkwQR5hz_RUixYW-dqt0LSjRBWt7yPCEpbw-0OI5oRCm8mOCUTGY7JCeBwIVZ1u5hT6FRw" );
+                        $registrationIds = array($device_ids[$i]);
+
+                        // prep the bundle
+                        $msg = array
+                        (
+                            'message'       => "New WRASK has been posted",
+                            'title'         => "WRASK IT",
+                            'subtitle'      => 'WRASK IT APP',
+                            'tickerText'    => 'Dude',
+                            'vibrate'   => 1,
+                            'sound'     => 1
+                        );
+                        $fields = array
+                        (
+                            'registration_ids'  => $registrationIds,
+                            'data'              => $msg
+                        );
+                        $headers = array
+                        (
+                            'Authorization: key='. 'AIzaSyBXrGGF5N0WtgOc4-D2AiU7E-z3seiwbE0',
+                            'Content-Type: application/json'
+                        );
+                        $ch = curl_init();
+                        curl_setopt( $ch,CURLOPT_URL, 'https://android.googleapis.com/gcm/send' );
+                        curl_setopt( $ch,CURLOPT_POST, true );
+                        curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+                        curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+                        curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+                        curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+                        $result = curl_exec($ch );
+                        curl_close( $ch );
+                    }
+                }
+                //echo $result;
+             break; 
+
 
             case 'changeProfilePic':
 

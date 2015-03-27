@@ -22,12 +22,16 @@ return array(
         'application.modules.rights.*',
         'application.modules.rights.components.*',
         'application.modules.blog.models.*',
+        'application.modules.blog.components.*',
+        'application.modules.settings.models.*',
+        'application.modules.settings.components.*',
 	),
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		'blog',
 		'post',
+		'settings',
 		'user'=>array(
                 'tableUsers' => 'tbl_users',
                 'tableProfiles' => 'tbl_profiles',

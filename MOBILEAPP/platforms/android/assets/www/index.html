@@ -1,0 +1,133 @@
+<!doctype html>
+<html direction="rtl">
+<head lang="en">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>WRASK IT</title>
+<link href="fav.png" rel="shortcut icon">
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript">
+	(function() {
+      if (window.name.indexOf('NG_DEFER_BOOTSTRAP!') == 0) {
+        window.RUNNING_IN_NG_TEST_RUNNER = true;
+      }
+
+      var indexFile = (location.pathname.match(/\/(index[^\.]*\.html)/) || ['', ''])[1],
+          rUrl = /(#!\/|api|guide|misc|tutorial|cookbook|error|index[^\.]*\.html).*$/,
+          baseUrl = location.href.replace(rUrl, indexFile),
+          jQuery = /index-jq[^\.]*\.html$/.test(baseUrl),
+          debug = /index[^\.]*-debug\.html$/.test(baseUrl),
+          production = location.hostname === 'docs.angularjs.org',
+          headEl = document.getElementsByTagName('head')[0],
+          sync = true,
+          angularVersion = {
+            current: '1.2.4', // rewrite during build
+            cdn: '1.2.3'
+          };
+
+  addTag('link', {rel: 'stylesheet', href: 'css/style.css', type: 'text/css'});
+      
+	addTag('script', {src: 'scripts/jquery.js'});
+	addTag('script', {src: 'scripts/lib/angular.js'}, sync);
+	addTag('script', {src: 'scripts/lib/angular-route.js' }, sync);
+	addTag('script', {src: 'scripts/lib/angular-touch.js' }, sync);
+	addTag('script', {src: 'scripts/lib/angular-carousel.js' }, sync);
+	addTag('script', {src: 'scripts/lib/angular-mobile.js' }, sync);
+	addTag('script', {src: 'scripts/lib/angular-animate.js' }, sync);
+        addTag('script', {src: 'scripts/lib/ngFacebook.js' }, sync);
+	addTag('script', {src: 'scripts/lib/mobile-nav.js' }, sync);
+	addTag('script', {src: 'scripts/lib/createDialog.js' }, sync);
+	addTag('script', {src: 'scripts/app.js'}, sync);
+	  
+  // Include all controllers here
+  addTag('script', {src: 'scripts/controllers/loginController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/homeController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/registerController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/forgotController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/answersController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/submitanswerController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/myprofileController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/wraskitController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/editprofileController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/changePasswordController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/myanswersController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/profileController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/wraskinterestController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/connectsController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/changeProfilePicController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/searchController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/locationController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/infoController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/settingsController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/editanswerController.js'}, sync);
+  addTag('script', {src: 'scripts/controllers/feedbackController.js'}, sync);
+  addTag('script', {src: 'scripts/lib/angular-file-upload.js'}, sync);
+	  function addTag(name, attributes, sync) {
+	    var el = document.createElement(name),
+	        attrName;
+
+	    for (attrName in attributes) {
+	      el.setAttribute(attrName, attributes[attrName]);
+	    }
+
+	    sync ? document.write(outerHTML(el)) : headEl.appendChild(el);
+	  }
+
+      function outerHTML(node){
+        // if IE, Chrome take the internal method otherwise build one
+        return node.outerHTML || (
+            function(n){
+                var div = document.createElement('div'), h;
+                div.appendChild(n);
+                h = div.innerHTML;
+                div = null;
+                return h;
+            })(node);
+      }
+    })();
+</script>
+<style type="text/css">
+.form_error {
+  margin-top: 10px;
+  font-size: 16px;
+  color: red;
+  text-align: center;
+}
+a{
+  cursor: pointer;
+}
+.popup-overlay {
+  /* A dark translucent div that covers the whole screen */
+  position:fixed;
+  z-index:9999;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:#000000;
+  opacity: 0.7;
+}
+.wrask_it_popup {
+  /* A centered div above the overlay with a box shadow. */
+  z-index:10000;
+  position: absolute;
+  width: 90%; /* Default */
+
+  /* Center the dialog */
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+
+  /*background-color: #fff;
+  box-shadow: 4px 4px 80px #000;*/
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="MainCtrl" autoscroll="false">
+<!-- <mobile-view></mobile-view> -->
+<div class="ng-view"></div>
+</body>
+</html>

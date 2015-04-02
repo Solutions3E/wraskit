@@ -1,0 +1,299 @@
+2015-04-02 11:17:27.760 Wraskit[3214:18957] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/12BCA711-DB3D-4F8E-A1BD-45D9633090A6/Library/Cookies/Cookies.binarycookies
+2015-04-02 11:17:28.815 Wraskit[3214:18957] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 11:17:28.816 Wraskit[3214:18957] Multi-tasking -> Device: YES, App: YES
+2015-04-02 11:17:28.909 Wraskit[3214:18957] Unlimited access to network resources
+2015-04-02 11:17:29.010 Wraskit[3214:18957] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 11:17:30.215 Wraskit[3214:18957] [CDVTimer][file] 31.509995ms
+2015-04-02 11:17:30.215 Wraskit[3214:18957] [CDVTimer][TotalPluginStartup] 31.772971ms
+2015-04-02 11:17:30.217 Wraskit[3214:18957] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 11:17:31.064 Wraskit[3214:18957] Resetting plugins due to page load.
+2015-04-02 11:17:31.177 Wraskit[3214:18957] Finished load of: about:blank
+2015-04-02 11:32:11.650 Wraskit[3477:23615] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/7E38FF0C-382D-4658-9F0F-639F6BBB062D/Library/Cookies/Cookies.binarycookies
+2015-04-02 11:32:11.815 Wraskit[3477:23615] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 11:32:11.816 Wraskit[3477:23615] Multi-tasking -> Device: YES, App: YES
+2015-04-02 11:32:11.830 Wraskit[3477:23615] Unlimited access to network resources
+2015-04-02 11:32:11.834 Wraskit[3477:23615] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 11:32:11.951 Wraskit[3477:23615] [CDVTimer][file] 9.483993ms
+2015-04-02 11:32:11.951 Wraskit[3477:23615] [CDVTimer][TotalPluginStartup] 9.793997ms
+2015-04-02 11:32:11.953 Wraskit[3477:23615] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 11:32:12.299 Wraskit[3477:23615] Resetting plugins due to page load.
+2015-04-02 11:32:12.373 Wraskit[3477:23615] Finished load of: about:blank
+2015-04-02 11:39:11.279 Wraskit[3604:25557] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/DB398447-EA0B-4075-9FD5-EEB1FF672C7D/Library/Cookies/Cookies.binarycookies
+2015-04-02 11:39:11.372 Wraskit[3604:25557] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 11:39:11.372 Wraskit[3604:25557] Multi-tasking -> Device: YES, App: YES
+2015-04-02 11:39:11.380 Wraskit[3604:25557] Unlimited access to network resources
+2015-04-02 11:39:11.383 Wraskit[3604:25557] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 11:39:11.481 Wraskit[3604:25557] [CDVTimer][file] 1.683950ms
+2015-04-02 11:39:11.481 Wraskit[3604:25557] [CDVTimer][TotalPluginStartup] 1.855016ms
+2015-04-02 11:39:11.482 Wraskit[3604:25557] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 11:39:11.533 Wraskit[3604:25557] Resetting plugins due to page load.
+2015-04-02 11:39:11.546 Wraskit[3604:25557] Finished load of: about:blank
+2015-04-02 11:39:30.493 Wraskit[3782:26053] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/5E5247DF-1451-472C-8935-734893FE9106/Library/Cookies/Cookies.binarycookies
+2015-04-02 11:39:30.609 Wraskit[3782:26053] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 11:39:30.609 Wraskit[3782:26053] Multi-tasking -> Device: YES, App: YES
+2015-04-02 11:39:30.611 Wraskit[3782:26053] Unlimited access to network resources
+2015-04-02 11:39:30.614 Wraskit[3782:26053] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 11:39:30.708 Wraskit[3782:26053] [CDVTimer][file] 1.664042ms
+2015-04-02 11:39:30.708 Wraskit[3782:26053] [CDVTimer][TotalPluginStartup] 1.839995ms
+2015-04-02 11:39:30.709 Wraskit[3782:26053] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 11:39:30.765 Wraskit[3782:26053] Resetting plugins due to page load.
+2015-04-02 11:39:30.778 Wraskit[3782:26053] Finished load of: about:blank
+2015-04-02 11:49:43.468 Wraskit[4007:28992] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/9A3CB87E-DF64-4BBA-9780-4EA41CD7CBEB/Library/Cookies/Cookies.binarycookies
+2015-04-02 11:49:43.586 Wraskit[4007:28992] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 11:49:43.586 Wraskit[4007:28992] Multi-tasking -> Device: YES, App: YES
+2015-04-02 11:49:43.589 Wraskit[4007:28992] Unlimited access to network resources
+2015-04-02 11:49:43.592 Wraskit[4007:28992] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 11:49:43.693 Wraskit[4007:28992] [CDVTimer][file] 1.915038ms
+2015-04-02 11:49:43.693 Wraskit[4007:28992] [CDVTimer][TotalPluginStartup] 2.108037ms
+2015-04-02 11:49:43.694 Wraskit[4007:28992] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 11:49:43.750 Wraskit[4007:28992] Resetting plugins due to page load.
+2015-04-02 11:49:43.764 Wraskit[4007:28992] Finished load of: about:blank
+2015-04-02 11:50:56.196 Wraskit[4104:29630] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/B07C303B-FD25-47F2-97DC-1739BE02E50B/Library/Cookies/Cookies.binarycookies
+2015-04-02 11:50:56.297 Wraskit[4104:29630] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 11:50:56.298 Wraskit[4104:29630] Multi-tasking -> Device: YES, App: YES
+2015-04-02 11:50:56.300 Wraskit[4104:29630] Unlimited access to network resources
+2015-04-02 11:50:56.303 Wraskit[4104:29630] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 11:50:56.402 Wraskit[4104:29630] [CDVTimer][file] 2.894998ms
+2015-04-02 11:50:56.403 Wraskit[4104:29630] [CDVTimer][TotalPluginStartup] 3.161013ms
+2015-04-02 11:50:56.404 Wraskit[4104:29630] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 11:50:56.455 Wraskit[4104:29630] Resetting plugins due to page load.
+2015-04-02 11:50:56.469 Wraskit[4104:29630] Finished load of: about:blank
+2015-04-02 11:52:11.214 Wraskit[4286:30340] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/D5CFA5A2-5571-45F3-8B86-F3E41CD5CE41/Library/Cookies/Cookies.binarycookies
+2015-04-02 11:52:11.325 Wraskit[4286:30340] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 11:52:11.325 Wraskit[4286:30340] Multi-tasking -> Device: YES, App: YES
+2015-04-02 11:52:11.327 Wraskit[4286:30340] Unlimited access to network resources
+2015-04-02 11:52:11.330 Wraskit[4286:30340] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 11:52:11.425 Wraskit[4286:30340] [CDVTimer][file] 1.774013ms
+2015-04-02 11:52:11.425 Wraskit[4286:30340] [CDVTimer][TotalPluginStartup] 1.953006ms
+2015-04-02 11:52:11.426 Wraskit[4286:30340] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 11:52:11.483 Wraskit[4286:30340] Resetting plugins due to page load.
+2015-04-02 11:52:11.496 Wraskit[4286:30340] Finished load of: about:blank
+2015-04-02 12:07:55.933 Wraskit[5454:36763] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/505031AE-6850-46A9-B1A5-C08633906D7A/Library/Cookies/Cookies.binarycookies
+2015-04-02 12:07:56.040 Wraskit[5454:36763] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 12:07:56.040 Wraskit[5454:36763] Multi-tasking -> Device: YES, App: YES
+2015-04-02 12:07:56.052 Wraskit[5454:36763] Unlimited access to network resources
+2015-04-02 12:07:56.056 Wraskit[5454:36763] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 12:07:56.179 Wraskit[5454:36763] [CDVTimer][file] 32.158017ms
+2015-04-02 12:07:56.180 Wraskit[5454:36763] [CDVTimer][TotalPluginStartup] 32.482028ms
+2015-04-02 12:07:56.182 Wraskit[5454:36763] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 12:07:56.507 Wraskit[5454:36763] Resetting plugins due to page load.
+2015-04-02 12:07:56.547 Wraskit[5454:36763] Finished load of: about:blank
+2015-04-02 12:11:19.257 Wraskit[5454:37766] Terminating since there is no system app.
+2015-04-02 12:14:16.950 Wraskit[5633:39473] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/C63C1B56-B92A-4B63-9FA3-245C86C8B3A5/Library/Cookies/Cookies.binarycookies
+2015-04-02 12:14:17.141 Wraskit[5633:39473] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 12:14:17.141 Wraskit[5633:39473] Multi-tasking -> Device: YES, App: YES
+2015-04-02 12:14:17.155 Wraskit[5633:39473] Unlimited access to network resources
+2015-04-02 12:14:17.158 Wraskit[5633:39473] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 12:14:17.276 Wraskit[5633:39473] [CDVTimer][file] 10.931015ms
+2015-04-02 12:14:17.277 Wraskit[5633:39473] [CDVTimer][TotalPluginStartup] 11.197984ms
+2015-04-02 12:14:17.278 Wraskit[5633:39473] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 12:14:17.677 Wraskit[5633:39473] Resetting plugins due to page load.
+2015-04-02 12:14:17.737 Wraskit[5633:39473] Finished load of: about:blank
+2015-04-02 12:21:18.595 Wraskit[5633:41283] Terminating since there is no system app.
+2015-04-02 12:21:45.555 Wraskit[5823:42031] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/417A0951-9B02-4316-96E8-5E8EC37D3B36/Library/Cookies/Cookies.binarycookies
+2015-04-02 12:21:45.614 Wraskit[5823:42031] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 12:21:45.614 Wraskit[5823:42031] Multi-tasking -> Device: YES, App: YES
+2015-04-02 12:21:45.625 Wraskit[5823:42031] Unlimited access to network resources
+2015-04-02 12:21:45.628 Wraskit[5823:42031] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 12:21:45.707 Wraskit[5823:42031] [CDVTimer][file] 1.828969ms
+2015-04-02 12:21:45.708 Wraskit[5823:42031] [CDVTimer][TotalPluginStartup] 2.005041ms
+2015-04-02 12:21:45.709 Wraskit[5823:42031] ERROR: Start Page at 'www/index.html' was not found.
+2015-04-02 12:21:45.757 Wraskit[5823:42031] Resetting plugins due to page load.
+2015-04-02 12:21:45.770 Wraskit[5823:42031] Finished load of: about:blank
+2015-04-02 12:31:46.751 Wraskit[6735:46240] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Data/Application/ACD9DF22-8D6C-4001-8465-EA4AF86AF689/Library/Cookies/Cookies.binarycookies
+2015-04-02 12:31:46.870 Wraskit[6735:46240] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 12:31:46.870 Wraskit[6735:46240] Multi-tasking -> Device: YES, App: YES
+2015-04-02 12:31:46.884 Wraskit[6735:46240] Unlimited access to network resources
+2015-04-02 12:31:46.887 Wraskit[6735:46240] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 12:31:46.992 Wraskit[6735:46240] [CDVTimer][file] 13.917983ms
+2015-04-02 12:31:46.992 Wraskit[6735:46240] [CDVTimer][TotalPluginStartup] 14.247000ms
+2015-04-02 12:31:47.250 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:31:56.963 Wraskit[6735:46240] Finished load of: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Bundle/Application/6E1EF66F-C5D2-4F77-948C-37AE85729286/Wraskit.app/www/index.html#/
+2015-04-02 12:35:11.517 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:11.518 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:11.519 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:11.521 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:35:16.727 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:16.727 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:16.728 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:16.729 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:35:17.975 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:17.975 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:17.976 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:17.977 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:35:19.263 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:19.264 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:19.265 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:19.266 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:35:20.070 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:20.070 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:20.071 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:20.072 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:35:25.199 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:25.199 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:25.200 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:25.202 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:35:28.663 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:28.663 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:28.664 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:28.666 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:35:30.057 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:30.057 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:30.058 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:30.060 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:35:30.525 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:30.525 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:35:30.526 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:35:30.528 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:36:43.366 Wraskit[6735:46240] CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:36:43.367 Wraskit[6735:46240] Failed to load webpage with error: CDVWebViewDelegate: Navigation started when state=1
+2015-04-02 12:36:43.368 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:36:43.370 Wraskit[6735:46240] Failed to load webpage with error: The requested URL was not found on this server.
+2015-04-02 12:37:05.113 Wraskit[6735:46240] Resetting plugins due to page load.
+2015-04-02 12:37:06.942 Wraskit[6735:46240] Finished load of: http://www.appdemostore.com/m/6495744626262016
+2015-04-02 12:39:35.913 Wraskit[6735:46240] Snapshotting a view that has not been rendered results in an empty snapshot. Ensure your view has been rendered at least once before snapshotting or snapshot after screen updates.
+2015-04-02 15:17:57.756 Wraskit[7405:61823] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 15:17:57.774 Wraskit[7405:61823] Multi-tasking -> Device: YES, App: YES
+2015-04-02 15:17:57.787 Wraskit[7405:61823] Unlimited access to network resources
+2015-04-02 15:17:57.791 Wraskit[7405:61823] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 15:17:57.970 Wraskit[7405:61823] [CDVTimer][file] 44.529974ms
+2015-04-02 15:17:57.970 Wraskit[7405:61823] [CDVTimer][TotalPluginStartup] 44.788003ms
+2015-04-02 15:17:58.381 Wraskit[7405:61823] Resetting plugins due to page load.
+2015-04-02 15:17:59.066 Wraskit[7405:61823] Finished load of: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Bundle/Application/896C0EC0-7AD1-43E8-AE8A-30722FB23F6A/Wraskit.app/www/index.html#/home
+2015-04-02 15:20:20.916 Wraskit[7732:63283] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 15:20:20.917 Wraskit[7732:63283] Multi-tasking -> Device: YES, App: YES
+2015-04-02 15:20:20.926 Wraskit[7732:63283] Unlimited access to network resources
+2015-04-02 15:20:20.929 Wraskit[7732:63283] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 15:20:21.027 Wraskit[7732:63283] [CDVTimer][file] 2.233982ms
+2015-04-02 15:20:21.027 Wraskit[7732:63283] [CDVTimer][TotalPluginStartup] 2.490997ms
+2015-04-02 15:20:21.090 Wraskit[7732:63283] Resetting plugins due to page load.
+2015-04-02 15:20:22.148 Wraskit[7732:63283] Finished load of: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Bundle/Application/B50DBE1B-D539-46E6-A98A-A7AADE3A79F4/Wraskit.app/www/index.html#/
+2015-04-02 15:20:26.843 Wraskit[7732:63283] THREAD WARNING: ['InAppBrowser'] took '245.746094' ms. Plugin should use a background thread.
+2015-04-02 15:20:34.949 Wraskit[7732:63283] THREAD WARNING: ['InAppBrowser'] took '55.449219' ms. Plugin should use a background thread.
+2015-04-02 15:20:50.730 Wraskit[7732:63283] THREAD WARNING: ['InAppBrowser'] took '56.091553' ms. Plugin should use a background thread.
+2015-04-02 15:21:08.988 Wraskit[7732:63283] THREAD WARNING: ['InAppBrowser'] took '57.820068' ms. Plugin should use a background thread.
+2015-04-02 15:21:44.126 Wraskit[7732:63283] THREAD WARNING: ['InAppBrowser'] took '59.083008' ms. Plugin should use a background thread.
+2015-04-02 15:31:32.614 Wraskit[8064:66295] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 15:31:32.615 Wraskit[8064:66295] Multi-tasking -> Device: YES, App: YES
+2015-04-02 15:31:32.625 Wraskit[8064:66295] Unlimited access to network resources
+2015-04-02 15:31:32.629 Wraskit[8064:66295] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 15:31:32.708 Wraskit[8064:66295] [CDVTimer][file] 1.760006ms
+2015-04-02 15:31:32.708 Wraskit[8064:66295] [CDVTimer][TotalPluginStartup] 1.947999ms
+2015-04-02 15:31:32.759 Wraskit[8064:66295] Resetting plugins due to page load.
+2015-04-02 15:31:33.204 Wraskit[8064:66295] Finished load of: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Bundle/Application/5314C9CE-3080-4D1A-B698-87D3BD1B125C/Wraskit.app/www/index.html#/home
+2015-04-02 15:31:56.059 Wraskit[8340:67009] Apache Cordova native platform version 3.8.0 is starting.
+2015-04-02 15:31:56.060 Wraskit[8340:67009] Multi-tasking -> Device: YES, App: YES
+2015-04-02 15:31:56.077 Wraskit[8340:67009] Unlimited access to network resources
+2015-04-02 15:31:56.080 Wraskit[8340:67009] 
+
+Started backup to iCloud! Please be careful.
+Your application might be rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines" at:
+https://developer.apple.com/icloud/documentation/data-storage/
+To disable web storage backup to iCloud, set the BackupWebStorage preference to "local" in the Cordova config.xml file
+
+2015-04-02 15:31:56.191 Wraskit[8340:67009] [CDVTimer][file] 10.170996ms
+2015-04-02 15:31:56.191 Wraskit[8340:67009] [CDVTimer][TotalPluginStartup] 10.493040ms
+2015-04-02 15:31:56.504 Wraskit[8340:67009] Resetting plugins due to page load.
+2015-04-02 15:31:57.018 Wraskit[8340:67009] Finished load of: file:///Users/abid/Library/Developer/CoreSimulator/Devices/7E4BB51B-B876-4DA6-A798-677884151541/data/Containers/Bundle/Application/DDB8FFA9-0718-4B60-B216-69C88AF01F89/Wraskit.app/www/index.html#/
+2015-04-02 16:55:28.344 Wraskit[8340:67009] Resetting plugins due to page load.
+2015-04-02 16:55:37.695 Wraskit[8340:67009] Finished load of: http://artcomments.blogspot.in/2015/03/armory-new-york-2015.html?m=1
+2015-04-02 16:55:54.240 Wraskit[8340:84585] Terminating since there is no system app.

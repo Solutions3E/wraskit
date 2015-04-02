@@ -1,0 +1,143 @@
+'use strict';
+myCustom.controller('wraskitController', function wraskitController($scope, $http, $window, $navigate) {
+
+	$scope.check_login();
+	$scope.loading=true;
+	$("#second_cat").hide();
+	$("#third_cat").hide();
+
+	$scope.privacies = [
+    	{name:'public',value:'0'},
+    	{name:'anonymous',value:'1'},
+    	{name:'direct',value:'2'}
+  	];
+  	$scope.show_privacy = null;
+  	$scope.getPrivacy = function () {
+  		//alert($scope.privacy);
+  		if($scope.privacy == '2') {
+  			//$(".private_wrask").fadeIn('slow');
+  			$scope.show_privacy = "1";
+  		} else {
+  			$scope.show_privacy = null;
+  		}
+  			
+  	}
+
+
+    //wrask interest pop up box
+	$(".wrask_it_popup").fadeIn('slow');
+	$scope.pop_open = function () {
+		$(".wrask_it_popup").fadeIn('slow');
+		$(".popup-overlay").fadeIn('slow');
+	};
+	
+	$scope.pop_close = function() {
+			$(".wrask_it_popup").fadeOut('slow');
+			$(".popup-overlay").fadeOut('slow');
+			$navigate.go("/home");
+	};
+
+	//get connected users
+	$http({
+		url	   :$scope.baseurl+"connectedUsers/"+$scope.userId,
+		method :'GET',
+		params :{}
+	}).success (function(data) {
+		$scope.connectedUsers = data;
+	}).error(function(data) {
+	        alert("error, try again!");
+	});
+	//close connected users lists
+
+    
+
+    $http({
+		url: $scope.baseurl+"getcategories/",
+		method : 'GET',
+		params : {}
+		}).success(function(data) {
+			//var parsed = JSON.stringify(data);
+			//alert(data);
+			$scope.categories = data;
+			$scope.choosecategory = "choose category";
+			//alert(data[0].category_name);
+		});
+	
+	//var pId = 1;
+	
+	$scope.getSubcategories = function (pid) {
+		$("#second_cat").show();
+		$("#third_cat").hide();
+		$scope.selected_cat = pid;
+	if(pid==null) {
+		$scope.catval = "true";
+	}
+	
+		$http({
+			url: $scope.baseurl+"getSubcategories/"+pid,
+			method : 'GET',
+			params : {}
+			}).success(function(data) {
+				//var parsed = JSON.stringify(data);
+				//alert(data);
+				$scope.subcategories = data;
+				$scope.choosecategory = "choose category";
+				if(data.length == 0)
+				{
+					$("#second_cat").hide();
+					$("#third_cat").hide();
+				}
+			});
+
+	} // close function
+
+
+	$scope.getchildcategories = function (cid) {
+		$("#third_cat").show();
+		$scope.selected_cat = cid;
+		$http({
+			url: $scope.baseurl+"getSubcategories/"+cid,
+			method : 'GET',
+			params : {}
+			}).success(function(data) {
+				//var parsed = JSON.stringify(data);
+				//alert(data);
+				$scope.childcategories = data;
+				$scope.choosecategory = "choose category";
+				if(data.length == 0)
+				{
+					$("#third_cat").hide();
+				}
+			});
+
+	} // close function
+
+	$scope.getFinalCat = function (lid)
+	{
+		$scope.selected_cat = lid;
+	}
+
+
+	$scope.submitForm = function (isValid) {
+		if(isValid){
+
+			var category_id = $scope.selected_cat;
+			var privacy 	= $scope.privacy;
+			var question 	= $scope.question;
+			var direct_user = $scope.direct_user;
+			$http({
+				url : $scope.baseurl+"submitQuestion",
+				method : 'POST',
+				data : {userid:$scope.userId,question:question,catId:category_id,privacy:privacy,direct_user:direct_user}
+			}).success(function(data){
+				alert("You wrask has been posted!");
+				$navigate.go("/home");
+			}).error(function(data) {
+	         	alert("error, try again!");
+			});
+		}
+	}
+
+});    
+
+

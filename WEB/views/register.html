@@ -1,0 +1,72 @@
+<!-- loading  -->
+    <div class="popup_main_new" ng-show="loading">
+        <div class="new_overlay"></div>
+        <div class="cont_wrapper">
+            <div class="cont_container">
+                <!-- wrask interest pop up -->
+                <div class="wrask_it_popup">
+                    <div class="loading-msg">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- loading closes -->
+    
+<div class="website_wrapper" autoscroll="false">
+        <div class="cont_wrapper">
+            <div class="cont_container">
+                <div class="form_box "> 
+                    <div class="form_row"><img src="img/login_logo.png">
+                    </div>
+                    <form class="register_form " name="userForm" ng-submit="submitForm(userForm.$valid)" novalidate>
+                        <fieldset> 
+                            
+                            <div class="form_field_wrapper">
+                                <input type="text" name="firstname" ng-model="firstname" class="field_log" placeholder="First Name" required>
+                                <p ng-show="userForm.firstname.$invalid && !userForm.firstname.$pristine" class="form_error">First Name is required</p>
+                            </div>
+
+                            <div class="form_field_wrapper">
+                                <input type="text" name="lastname" ng-model="lastname" class="field_log" placeholder="Last Name" required>
+                                <p ng-show="userForm.lastname.$invalid && !userForm.lastname.$pristine" class="form_error">Last Name is required</p>
+                            </div>
+
+                            <div class="form_field_wrapper">
+                                <input type="email" name="email" ng-model="email" class="field_log" placeholder="Email" required>
+                                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="form_error">Email is required</p>
+                                <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="form_error">Invalid Email </p>
+                                <p ng-show="email_exist" style="color:red;" class="form_error"> Email already exists.</p>
+                            </div>
+                            
+                            
+                            <div class="form_field_wrapper">
+                                <input type="text" placeholder="User Name" name="username" ng-model="username" class="field_log" required>
+                                <p ng-show="userForm.username.$invalid && !userForm.username.$pristine" class="form_error">User name is required</p>
+                                <p ng-show="user_exist" style="color:red;" class="form_error"> Username already exists.</p>
+                            </div>
+
+                            <div class="form_field_wrapper">
+                                <input type="password" name="password" ng-model="password" class="field_log" placeholder="Password" required>
+                                <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="form_error">Password is required</p>
+                            </div>
+                            <div class="form_field_wrapper">
+                                <input type="password" name="cpassword" ng-model="cpassword" class="field_log" placeholder="Confirm Password" required>
+                                <p ng-show="userForm.cpassword.$invalid && !userForm.cpassword.$pristine" class="form_error">Confirm password is required</p>
+                            </div>
+                            
+                            <div class="form_field_wrapper">
+                            <button class="sign_in" type="submit" ng-click="submit();"> Register <a href="#" class="btn_arrow"><img src="img/btn-right.png"></a>
+                            </button>
+                        </div>
+                            <div class="form_field_wrapper">
+                            <button class="sign_in" ng-tap="$navigate.go('/login')"> Login<a class="btn_arrow"><img src="img/btn-right.png"></a>
+                            </button>
+                            </div>
+                            
+                        </fieldset>
+                    </form>
+                  
+              </div>
+            </div>
+      </div>
+    </div>

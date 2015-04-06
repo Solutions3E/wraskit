@@ -44,7 +44,7 @@
                     <div class="table_row">
                             <div class="profile_data no_profile">
                             <div class="profile_data_txt">
-                             <p>{{question.content}}</p>
+                             <p class="link_content" ng-bind-html="question.content">  </p>
                             </div> 
                             <div class="link_box">
                               <!-- <a href="#" class="answer ">Answer</a> -->
@@ -57,9 +57,9 @@
                                         <img src="img/gplus.png" alt="Google" />
                                     </a>
 
-                                    <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
+                                    <!-- <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
                                         <img src="img/fb_icon.png" alt="Facebook" />
-                                    </a>
+                                    </a> -->
                                     
                                     <!-- <a ng-click="share(question)" class="facebook"><img src="img/fb_icon.png"></a> -->
                                 </div>
@@ -78,7 +78,8 @@
                             </div>
                             <div class="profile_data">
                            <div class="profile_data_txt">
-                             <p>{{wrask.answer}}</p>
+                             <!-- <p>{{wrask.answer}}</p> -->
+                             <p class="link_content" ng-bind-html="wrask.answer">  </p>
                             </div> 
                             <div class="link_box">
                                 <div class="ans_cont">
@@ -86,7 +87,8 @@
                                     <ul class="like-blk">
                                         <!-- <li ng-show="oldlikes" ng-disabled="isProcessing"> -->
                                         <li>
-                                        <a data="wrask.answerid" ng-click="likeAnswer(wrask.answerid)"><span style="float:left"><img src="img/ans_like.png"></span><span style=" margin-top:15px; float:left;">({{wrask.likes}})</span></a>
+                                        <a class="like_{{wrask.answerid}}" data="wrask.answerid" ng-click="likeAnswer(wrask.answerid)">
+                                            <span style="float:left"><img src="img/ans_like.png"></span><span style=" margin-top:15px; float:left;">({{wrask.likes}})</span></a>
                                         </li>
 
                                         <!-- <li ng-show="newlikes" ng-disabled="isProcessing">

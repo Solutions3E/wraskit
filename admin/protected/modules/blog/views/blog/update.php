@@ -3,16 +3,14 @@
 /* @var $model Blog */
 
 $this->breadcrumbs=array(
-	'Blogs'=>array('index'),
-	$model->title=>array('view','id'=>$model->id),
+	'Home'=>array('/'),
+	'Blogs'=>array('blog/admin'),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List Blog', 'url'=>array('index')),
-	array('label'=>'Create Blog', 'url'=>array('create')),
-	array('label'=>'View Blog', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Blog', 'url'=>array('admin')),
+	array('label'=>'List Blog', 'url'=>array('blog/admin')),
+	array('label'=>'Privacy policy', 'url'=>array('/blog/privacy/admin')),
 );
 ?>
 

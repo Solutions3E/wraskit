@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>WRASK IT</title>
 <link href="fav.png" rel="shortcut icon">
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 <script type="text/javascript">
 	(function() {
       if (window.name.indexOf('NG_DEFER_BOOTSTRAP!') == 0) {
@@ -26,6 +27,7 @@
           };
 
   addTag('link', {rel: 'stylesheet', href: 'css/style.css', type: 'text/css'});
+  addTag('link', {rel: 'stylesheet', href: 'css/bootstrap.css', type: 'text/css'});
       
 	addTag('script', {src: 'scripts/jquery.js'});
 	addTag('script', {src: 'scripts/lib/angular.js'}, sync);
@@ -37,6 +39,8 @@
         addTag('script', {src: 'scripts/lib/ngFacebook.js' }, sync);
 	addTag('script', {src: 'scripts/lib/mobile-nav.js' }, sync);
 	addTag('script', {src: 'scripts/lib/createDialog.js' }, sync);
+  addTag('script', {src: 'scripts/lib/ui-bootstrap.js' }, sync);
+  addTag('script', {src: 'scripts/lib/angular-sanitize.js' }, sync);
 	addTag('script', {src: 'scripts/app.js'}, sync);
 	  
   // Include all controllers here
@@ -93,6 +97,10 @@
   color: red;
   text-align: center;
 }
+p.link_content a {
+        color: #1414F5;
+        text-decoration: underline;
+    }
 a{
   cursor: pointer;
 }

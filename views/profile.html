@@ -10,28 +10,66 @@
                 </ul>
             </div>
         </div>
+
+        <!-- loading  -->
+    <div class="popup_main_new" ng-show="loading">
+        <div class="new_overlay"></div>
+        <div class="cont_wrapper">
+            <div class="cont_container">
+                <!-- wrask interest pop up -->
+                <div class="wrask_it_popup">
+                    <div class="loading-msg">Loading...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- loading closes -->
+
+
+        <!-- slider code starts -->
+    <div style="height:auto; margin-top:100px; width:85%; margin-left:auto; margin-right:auto">
+    <carousel interval="3000">
+      <slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}" style="margin:auto;">
+        <div class="carousel-caption">
+          <h5>{{slide.text}}</h5>
+          <a href="{{slide.links}}"><p>Read More...</p></a>
+        </div>
+      </slide>
+    </carousel>
+  </div>
+    <!-- end of slider code -->
+
+
         <div class="cont_wrapper">
             <div class="cont_container">
                 <div class="table_box">
                     
-                    <div class="table_row">
-                            <div class="profile_photo">
+                    <div class="table_row profile_table_row">
+                            <!-- <div class="profile_photo">
                             <img src="img/pro_pic/{{userdetails.profilePic}}">
-                            </div>
-                            <div class="profile_data">
-                                <div class="right_row">
-                                    <div class="profile_star"><img src="img/rating/{{rating}}.png" title="{{rating}}">
+                            </div> -->
+                            <div class="profile_cover">
+                                <div class="profile_data">
+                                    <div class="right_row">
+                                        <div class="profile_star"><img src="img/rating/{{rating}}.png" title="{{rating}}">
+                                        </div>
+                                        
                                     </div>
-                                    <div class="profile_follow">
-                                        <a ng-tap="$navigate.go('/connects/')" > Connects ( {{countmyconnects}} )</a>
-                                    </div>
+                                    <div class="profile_data_txt">
+                                     <h3>   {{userdetails.firstname}} &nbsp; {{userdetails.lastname}}</h3>
+                                     
+                                    </div> 
                                 </div>
-                                <div class="profile_data_txt">
-                                 <h3>   {{userdetails.firstname}} &nbsp; {{userdetails.lastname}}</h3>
-                                 <h2>   {{userdetails.city}}</h2>
-                                 <h2>   {{userdetails.state}}</h2>
-                                </div> 
                             </div>
+                            <div class="profile_cover">
+                                <div class="profile_follow">
+                                            <a ng-tap="$navigate.go('/connects/')" > Connects ( {{countmyconnects}} )</a> <br>
+                                               {{userdetails.city}} &nbsp;
+                                               {{userdetails.state}} 
+                                </div>
+                            </div>
+
                     </div>
                     <div class="table_row">
                             
@@ -43,7 +81,8 @@
                                     <h1>I love</h1>
                                     </div>
                                     <div class="tble_row">
-                            <p>{{userdetails.love}}</p>
+                            <!-- <p>{{userdetails.love}}</p> -->
+                            <p class="link_content" ng-bind-html="userdetails.love">  </p>
                             </div>
                                 </div>
                                 <div class="tble_lft">
@@ -53,7 +92,8 @@
                                     <h1>I hate</h1>
                                     </div>
                                     <div class="tble_row">
-                            <p>{{userdetails.hate}}</p>
+                            <!-- <p>{{userdetails.hate}}</p> -->
+                            <p class="link_content" ng-bind-html="userdetails.hate">  </p>
                             </div>
                                 </div>
                             </div>
@@ -82,7 +122,6 @@
                 <a ng-tap="$navigate.go('/wraskinterest')" class="ftr_links"><span><img src="img/ftr_icon2.png"></span>WRASK</a>
                 <a ng-tap="$navigate.go('/info')" class="ftr_links"><span><img src="img/ftr_icon3.png"></span>Updates</a>
                 <a ng-tap="$navigate.go('/settings')" class="ftr_links"><span><img src="img/ftr_icon4.png"></span>Settings</a>
-                <a ng-tap="$navigate.go('/feedback')" class="ftr_links"><span><img src="img/ftr_icon5.png"></span>Feedback</a>
             </div>
       </div>
     </div>

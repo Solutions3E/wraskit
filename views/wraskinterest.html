@@ -83,9 +83,9 @@
                            	  
                                 <div class="social-li">
                                 <a class="answer" ng-tap="$navigate.go('/answers/{{wrask.id}}')">Answer</a>
-                                <a href="#" class="sc_gplus"><img src="img/gplus.png"></a>
                                 <a href="#" class="twitter"><img src="img/twitter.png"></a>
-                                <a href="#" class="facebook"><img src="img/fb_icon.png"></a>
+                                <a href="#" class="sc_gplus"><img src="img/gplus.png"></a>
+                                <!-- <a href="#" class="facebook"><img src="img/fb_icon.png"></a> -->
                                 </div>
                             </div>
                             </div>
@@ -97,7 +97,7 @@
       </div>
       <div class="ftr_wrapper ">
         	<div class="ftr_continer">
-            	<a href="#" class="ftr_links"><span><img src="img/ftr_icon1.png"></span>Location</a>
+            	<a ng-tap="$navigate.go('/location')" class="ftr_links"><span><img src="img/ftr_icon1.png"></span>Location</a>
                 <a ng-tap="$navigate.go('/wraskinterest')" class="ftr_links"><span><img src="img/ftr_icon2.png"></span>WRASK</a>
                 <a ng-tap="$navigate.go('/info')" class="ftr_links"><span><img src="img/ftr_icon3.png"></span>Updates</a>
                 <a ng-tap="$navigate.go('/settings')" class="ftr_links"><span><img src="img/ftr_icon4.png"></span>Settings</a>

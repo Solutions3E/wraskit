@@ -1,5 +1,5 @@
 'use strict';
-var myCustom = angular.module('myApp', ['ajoslin.mobile-navigate','ngRoute','angular-carousel','fundoo.services','angularFileUpload','ngFacebook']);
+var myCustom = angular.module('myApp', ['ajoslin.mobile-navigate','ngRoute','angular-carousel','fundoo.services','angularFileUpload','ngFacebook','ui.bootstrap', 'ngSanitize']);
 //var fbAppId='1441504876114178';
 var fbAppId='1568536133414519';
 myCustom.config(['$httpProvider', function($httpProvider) {

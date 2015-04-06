@@ -7,7 +7,7 @@ myCustom.controller('wraskitController', function wraskitController($scope, $htt
 	$scope.privacies = [
     	/*{name:'public',value:'0'},*/
     	{name:'Ask Community',value:'1'},
-    	{name:'Ask A Connect',value:'2'}
+    	/*{name:'Ask A Connect, Coming Soon',value:'2'}*/
   	];
   	$scope.show_privacy = null;
   	$scope.direct_wrask = "1";

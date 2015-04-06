@@ -3,6 +3,18 @@ svn:wc:ra_dav:version-url
 V 39
 /repos/wraskit/!svn/ver/134/scripts/lib
 END
+angular-file-upload.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/repos/wraskit/!svn/ver/650/scripts/lib/angular-file-upload.js
+END
+ui-bootstrap.js
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/repos/wraskit/!svn/ver/765/scripts/lib/ui-bootstrap.js
+END
 angular.js
 K 25
 svn:wc:ra_dav:version-url
@@ -44,6 +56,12 @@ K 25
 svn:wc:ra_dav:version-url
 V 53
 /repos/wraskit/!svn/ver/134/scripts/lib/toastr.min.js
+END
+ngFacebook.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/repos/wraskit/!svn/ver/666/scripts/lib/ngFacebook.js
 END
 angular-sanitize.min.js
 K 25
@@ -123,17 +141,17 @@ svn:wc:ra_dav:version-url
 V 61
 /repos/wraskit/!svn/ver/134/scripts/lib/angular-loader.min.js
 END
-angular-cookies.js
-K 25
-svn:wc:ra_dav:version-url
-V 58
-/repos/wraskit/!svn/ver/134/scripts/lib/angular-cookies.js
-END
 createDialog.js
 K 25
 svn:wc:ra_dav:version-url
 V 55
 /repos/wraskit/!svn/ver/134/scripts/lib/createDialog.js
+END
+angular-cookies.js
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/repos/wraskit/!svn/ver/134/scripts/lib/angular-cookies.js
 END
 angular-route.js
 K 25

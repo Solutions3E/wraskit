@@ -8,6 +8,13 @@ myCustom.controller('profileController', function profileController($scope, $htt
 	var user_id = $scope.userId;
 
 		
+	var slides = $scope.slides = [
+			{'image': $scope.siteurl+'img/carousel/index.jpg', 'text' : 'Gynecologist Calls Abortion Reversal Bill Downright Offensive','links' : 'http://www.huffingtonpost.com/2015/03/26/abortion-provider-arizona_n_6947946.html'},
+			{'image': $scope.siteurl+'img/carousel/index1.jpg', 'text' : 'The 7 naughtiest stories from the blockbuster Justice Department ','links' : 'http://www.businessinsider.in/The-7-naughtiest-stories-from-the-blockbuster-Justice-Department-sex-party-report/articleshow/46708214.cms'},
+			{'image': $scope.siteurl+'img/carousel/index2.jpg', 'text' : 'ARMORY NEW YORK 2015 ','links' : 'http://artcomments.blogspot.in/2015/03/armory-new-york-2015.html'},
+			{'image': $scope.siteurl+'img/carousel/index3.jpg', 'text' : 'Future Fathers: Livestreamed VR Birth, Womb Kick Smartwatch for Dads','links' : 'http://www.8bitdad.com/2015/03/19/future-fathers-livestreamed-vr-birth-womb-kick-smartwatch-for-dads-18884/'}];
+	
+
 	//profile and user details
 	$http({
 			url: $scope.baseurl+"userDetails/"+$scope.pid,
@@ -15,9 +22,11 @@ myCustom.controller('profileController', function profileController($scope, $htt
 			params : {}
 		}).success(function(data) {
 			//alert(JSON.stringify(data));
+			$scope.loading	=false;
 			$scope.userdetails = data;
 		}).error(function(data) {
-        alert("error");                
+        alert("error");    
+        $scope.loading	=false;            
     });
 
 
@@ -80,14 +89,17 @@ myCustom.controller('profileController', function profileController($scope, $htt
 
 
     $scope.connectUser = function(cid) {
+    	$scope.loading	=true;
 		$http({
 			url: 	$scope.baseurl+"connectUser/"+user_id,
 			method: 'GET',
 			params: {connect_id:cid}
 		}).success(function(data) {
 			alert('connected!');
+			$scope.loading	=false;
 		}).error(function(data) {
 			alert('Something went wrong! Please try again');
+			$scope.loading	=false;
 		});
 	}
 

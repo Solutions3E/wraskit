@@ -91,7 +91,25 @@ class ApiController extends Controller
                 $criteria1= new CDbCriteria;
                 $criteria1->select = "*";
                 $criteria1->addInCondition('id',$postids);
-                $model = Post::model()->findAll($criteria1);
+                $model1 = Post::model()->findAll($criteria1);
+
+                $model = array();
+
+                $i = 0;
+                foreach($model1 as $rec) {
+                    $model[$i]['category_id'] = $rec['category_id'];
+                    /*$model[$i]['content'] = $rec['content'];*/
+                    $model[$i]['content'] = $this->urlToLink($rec['content']);
+                    $model[$i]['createDate'] = $rec['createDate'];
+                    $model[$i]['dislikes'] = $rec['dislikes'];
+                    $model[$i]['id'] = $rec['id'];
+                    $model[$i]['likes'] = $rec['likes'];
+                    $model[$i]['privacy'] = $rec['privacy'];
+                    $model[$i]['title'] = $rec['title'];
+
+                    $i++;
+                }
+
                 break;
 
             case 'homepageWrasks':
@@ -116,6 +134,20 @@ class ApiController extends Controller
                 $criteria1->addCondition("wraskInterest.userId = $id");
                 $criteria1->order = "id DESC";
                 $model = Post::model()->findAll($criteria1);
+                $i = 0;
+                foreach($model as $rec) {
+                    $model[$i]['category_id'] = $rec['category_id'];
+                    /*$model[$i]['content'] = $rec['content'];*/
+                    $model[$i]['content'] = $this->urlToLink($rec['content']);
+                    $model[$i]['createDate'] = $rec['createDate'];
+                    $model[$i]['dislikes'] = $rec['dislikes'];
+                    $model[$i]['id'] = $rec['id'];
+                    $model[$i]['likes'] = $rec['likes'];
+                    $model[$i]['privacy'] = $rec['privacy'];
+                    $model[$i]['title'] = $rec['title'];
+
+                    $i++;
+                }
                 break;
 
              case 'countuserAnswers':
@@ -130,7 +162,8 @@ class ApiController extends Controller
 
             //post details
             case 'question':
-                $model     = Post::model()->with('categories')->findByPk($_GET['id']);
+                $models     = Post::model()->with('categories')->findByPk($_GET['id']);
+                $model['content'] = $this->urlToLink($models['content']);
                 break;
 
             //comment details
@@ -151,6 +184,7 @@ class ApiController extends Controller
                     ->select('c.*,p.firstname,p.*')
                     ->from('comments c')
                     ->Join('tbl_profiles p' , 'c.userId = p.user_id')
+                    ->order('likes DESC')
                     ->where('postId = '.$id.'' , array(':postId' => $id))
                     ->queryAll();
                 /*$criteria = new CDbCriteria;
@@ -164,7 +198,7 @@ class ApiController extends Controller
                 foreach($answers as $answer)
                 {
                     $model[$i]['answerid']  = $answer['id'];
-                    $model[$i]['answer']    = $answer['content'];
+                    $model[$i]['answer']    = $this->urlToLink($answer['content']);
                     $model[$i]['userid']    = $answer['userId'];
                     $model[$i]['createDate']= $answer['createDate'];
                     $model[$i]['likes']     = $answer['likes'];
@@ -231,12 +265,29 @@ class ApiController extends Controller
                 break;
 
             case 'userDetails':
-                $model = Yii::app()->db->createCommand()
+                $models = Yii::app()->db->createCommand()
                         ->select('*')
                         ->from('tbl_users u')
                         ->join('tbl_profiles p', 'u.id=p.user_id')
                         ->where('id=:id', array(':id'=>$id))
                         ->queryRow();
+                //$model['content'] = $this->urlToLink($models['content']);
+
+                            $model['id']        = $models['id'];
+                            $model['username']  = $models['username'];
+                            $model['email']      = $models['email'];
+                            $model['wraskpoints']    = $models['wraskpoints'];
+                            $model['location']  = $models['location'];
+                            $model['user_id']   = $models['user_id'];
+
+                            $model['lastname']  = $models['lastname'];
+                            $model['firstname'] = $models['firstname'];
+                            $model['love']      = $this->urlToLink($models['love']);
+                            $model['hate']      = $this->urlToLink($models['hate']);
+                            $model['city']      = $models['city'];
+                            $model['state']     = $models['state'];
+                            $model['profilePic'] = $models['profilePic'];
+
                 break;
             
             case 'userNotify':
@@ -486,12 +537,13 @@ class ApiController extends Controller
 
                 $model->insert();
 
-                 $model_questions= Yii::app()->db->createCommand("select u.device_type,u.device_id,u.id from post p join tbl_users u ON (u.id = p.user_id)
+                 $model_questions= Yii::app()->db->createCommand("select u.device_type,u.device_id,u.id,u.email from post p join tbl_users u ON (u.id = p.user_id)
         where p.id=$model->postId")->queryAll();
 
                  foreach($model_questions as $user) {
-                    $device_id = $user['device_id'];
+                    $device_id   = $user['device_id'];
                     $device_type = $user['device_type'];
+                    $email       = $user['email'];
                  }
 
                 //update points
@@ -504,15 +556,26 @@ class ApiController extends Controller
                                             'wraskpoints'=>$points,
                                         ), 'id=:id', array(':id'=>$userid));
 
+                //sending emails to the owner of question
+                $subject    = "NEW ANSWERS FOR YOUR WRASK";  
+                
+                $urls       = "http://$_SERVER[HTTP_HOST]".Yii::app()->baseUrl; 
+                $links      = explode("/admin",$urls);
+                $content    = substr($model->content, 0, 50)."...";
+                $app_url    = $links[0]."/#/answers/".$model->postId;
+                $questionurl= "<a href='".$app_url."'>here</a>";
+                $message    = $content." Exciting! Someone has responded to your WRASK. View  ANSWERS that were submitted  to your WRASK ".$questionurl;
+                $this->sendMail($email,$subject,$message);
+
                 if($device_type == "Android") {
 
                         $registrationIds = array($device_id);
                         // prep the bundle
                         $msg = array
                         (
-                            'message'       => "New WRASK has been posted",
-                            'title'         => "WRASK IT",
-                            'subtitle'      => 'WRASK IT APP',
+                            'message'       => "Exciting! Someone has responded to your WRASK. View  answers that were submitted  to your WRASK",
+                            'title'         => "NEW ANSWERS FOR YOUR WRASK",
+                            'subtitle'      => 'WRASK IT',
                             'tickerText'    => 'Dude',
                             'vibrate'   => 1,
                             'sound'     => 1
@@ -554,23 +617,60 @@ class ApiController extends Controller
                 break;
 
             case 'likeAnswer':
-                $data   = Comments::model()->findByPk($id);
-                $likes   = $data->likes + 1;
-                $command = Yii::app()->db->createCommand();
-                $result = $command->update('comments', array(
-                                            'likes'=>$likes,
-                                        ), 'id=:id', array(':id'=>$id));
-                $model = Comments::model()->findByPk($id);
+
+                $userid = $_REQUEST['userid'];
+                $postid = $_REQUEST['id'];
+
+                $activities = Postactivity::model()->findAllByAttributes(array('userid'=>$userid,'postid'=>$postid));
+                //print_r($activities); die;
+
+                if(empty($activities)) {
+                    $modelactivity = new Postactivity;
+                    $modelactivity->userid = $_REQUEST['userid'];
+                    $modelactivity->postid = $_REQUEST['id'];
+                    $modelactivity->activity = 1;
+                    $modelactivity->save();
+
+                    $data   = Comments::model()->findByPk($id);
+                    $likes   = $data->likes + 1;
+                    $command = Yii::app()->db->createCommand();
+                    $result = $command->update('comments', array(
+                                                'likes'=>$likes,
+                                            ), 'id=:id', array(':id'=>$id));
+                    $model = 1;
+                } else {
+                    $model = 2;
+                }
+
+                //$model = Comments::model()->findByPk($id);
                 break;
 
             case 'dislikeAnswer':
-                $model  = Comments::model()->findByPk($id);
-                $dislikes = $model->dislikes + 1;
+
+                $userid = $_REQUEST['userid'];
+                $postid = $_REQUEST['id'];
+
+                $activities = Postactivity::model()->findAllByAttributes(array('userid'=>$userid,'postid'=>$postid));
+
+                if(empty($activities)) {
+                    $modelactivity = new Postactivity;
+                    $modelactivity->userid = $_REQUEST['userid'];
+                    $modelactivity->postid = $_REQUEST['id'];
+                    $modelactivity->activity = 1;
+                    $modelactivity->save();
+
+                $data  = Comments::model()->findByPk($id);
+                $dislikes = $data->dislikes + 1;
                 $command  = Yii::app()->db->createCommand();
-                $model    = $command->update('comments',array(
+                $result    = $command->update('comments',array(
                                             'dislikes' => $dislikes,
                                             ),'id=:id', array(':id'=>$id) );
+                $model = 1;
+                } else {
+                    $model = 2;
+                }
                 break;
+
             case 'userRegister':
                 
                 $email = $_GET['email'];
@@ -625,8 +725,14 @@ class ApiController extends Controller
                         $profile->user_id = $model->id;
                         $profile->insert();
 
+                        $emailcontent = "Welcome to WRASK IT, the community that will encourage, inspire and connect you with others who relate to you.  
+Inside the community you will be able to ask and answer questions that deal with real life concerns and milestones. The messenger does matter; so, ask a question or leave words of encouragement. 
+There is finally a community that is more than entertainment but a place to get answers, advice and support when it matters.  Enter and <a href='www.wraskit.com'>WRASK IT</a>";
+                        $link = '<a href="www.wraskit.com">WRASK IT</a>';
                         $activation_url = $this->createAbsoluteUrl('/user/activation/activation',array("activkey" => $model->activkey, "email" => $model->email));
-                        UserModule::sendMail($model->email,UserModule::t("Registration succeful!"),UserModule::t("Congratulations! Your registration is completed successfully"));
+                        UserModule::sendMail($model->email,UserModule::t("Congratulations! WRASK IT registration was successful."),UserModule::t("Welcome to WRASK IT, the community that will encourage, inspire and connect you with others who relate to you.  
+Inside the community you will be able to ask and answer questions that deal with real life concerns and milestones. The messenger does matter; so, ask a question or leave words of encouragement. 
+There is finally a community that is more than entertainment but a place to get answers, advice and support when it matters.  Enter and $link"));
 
                     } else {
                         print_r($model->errors);
@@ -751,6 +857,7 @@ class ApiController extends Controller
                             ->select('p.*,q.*')
                             ->from('post q')
                             ->join('tbl_profiles p', 'p.user_id=q.user_id')
+                            ->order('q.id DESC')
                             ->queryAll();
                 break;
             
@@ -871,7 +978,7 @@ class ApiController extends Controller
                            
                             $adminEmail = "satheesh@3eplc.com";
                             $adminEmailFrom =  'wraskitapp@gmail.com';
-                            $headers = "MIME-Version: 1.0\r\nFrom: $adminEmailFrom\r\nReply-To: $adminEmailFrom\r\nContent-Type: text/html; charset=utf-8";
+                            $headers = "MIME-Version: 1.0\r\nFrom: $adminEmailFrom\r\nReply-To: $adminEmailFrom\r\nBCC: $adminEmailFrom\r\nContent-Type: text/html; charset=utf-8";
                             $message = wordwrap($message, 70);
                             $message = str_replace("\n.", "\n..", $message);
                             return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
@@ -919,6 +1026,7 @@ class ApiController extends Controller
                 $directpost = new DirectPost();
                 $useridarray =array();
                 $emailarray  ="";
+                $device_types = "";
 
                 $data = CJSON::decode($post, true);
                 
@@ -954,8 +1062,8 @@ class ApiController extends Controller
 
                     foreach($emails as $email){
                         $emailarray.= $email['email'].',';
-                        $device_ids[] = $email['device_id'];
-                        $device_types[] = $email['device_type'];
+                        //$device_ids[] = $email['device_id'];
+                        //$device_types[] = $email['device_type'];
                     }
                 }
 
@@ -976,11 +1084,20 @@ class ApiController extends Controller
                     $directpost->directuserId = $data['direct_user'];
                     $directpost->postId       = $model->id;
                     $directpost->insert();
-                    $emails    = User::model()->findByPk($directpost->directuserId,array('select' => 'email'));
-                    $emailarray = $emails->email;
-                    $device_ids[] = $emails->device_id;
-                    $device_types[] = $emails->device_type;
+                    $emails     = User::model()->findByPk($directpost->directuserId,array('select' => 'email'));
+                    $emailid    = $emails->email;
+                    $device_ids = $emails->device_id;
+                    $device_types = $emails->device_type;
 
+
+                    $subject    = "NEW WRASK NEEDS YOUR INPUT";  
+                    $urls       = "http://$_SERVER[HTTP_HOST]".Yii::app()->baseUrl; 
+                    $links      = explode("/admin",$urls);
+                    $content    = substr($model->content, 0, 50)."...";
+                    $app_url    = $links[0]."/#/answers/".$model->id;
+                    $questionurl= "<a href='".$app_url."'>here</a>";
+                    $message    = $content."answer and WRASK IT ".$questionurl;
+                    $this->sendMail($emailid,$subject,$message);
                     // save status fon notifications
                     $modelnotity  = new Notifications;
                     $modelnotity->type   = 2;
@@ -990,29 +1107,37 @@ class ApiController extends Controller
                     $modelnotity->save();
                 }
                 //sending emails to receivers
-                $email      = $emailarray;
-                $subject    = "WRAKS IT - New WRASK has been posted";  
-                $message    = $model->content;
-                $this->sendMail($email,$subject,$message);
+                if($data['privacy'] == '1'){ 
+                    $email      = $emailarray;
+                    $subject    = "NEW WRASK NEEDS YOUR INPUT";  
+                    
+                    $urls       = "http://$_SERVER[HTTP_HOST]".Yii::app()->baseUrl; 
+                    $links      = explode("/admin",$urls);
+                    $content    = substr($model->content, 0, 50)."...";
+                    $app_url    = $links[0]."/#/answers/".$model->id;
+                    $questionurl= "<a href='".$app_url."'>here</a>";
+                    $message    = $content."answer and WRASK IT ".$questionurl;
+                    
+                    foreach($emails as $email){ 
+                        $this->sendMail($email['email'],$subject,$message);
+                    }
+                }
             
                 //push notification android
-                /*$title = "WRASK IT";
-                $subject = "New wrask posted";
-                $model =   $this->sendPushnotification($title,$subject);*/
-                
-                for($i=0; $i<count($device_ids); $i++) {
+               
+                //for($i=0; $i<count($device_ids); $i++) {
 
-                   if($device_types[$i] == 'Android') {
+                   if($device_types == 'Android') {
                        //define( 'API_ACCESS_KEY', 'AIzaSyBXrGGF5N0WtgOc4-D2AiU7E-z3seiwbE0');
                         //$registrationIds = array("APA91bGWXd0kQ-BwcBu__nAP508N_HT3E8-9NsMom1_w_Ipxckqu7OeXCAinqwomyd4Yxa_S5n_kAXFgvSAoxUI_dmyxBkwQR5hz_RUixYW-dqt0LSjRBWt7yPCEpbw-0OI5oRCm8mOCUTGY7JCeBwIVZ1u5hT6FRw" );
-                        $registrationIds = array($device_ids[$i]);
+                        $registrationIds = array($device_ids);
 
                         // prep the bundle
                         $msg = array
                         (
-                            'message'       => "New WRASK has been posted",
-                            'title'         => "WRASK IT",
-                            'subtitle'      => 'WRASK IT APP',
+                            'message'       => "answer and WRASK IT",
+                            'title'         => "NEW WRASK NEEDS YOUR INPUT",
+                            'subtitle'      => 'WRASK IT',
                             'tickerText'    => 'Dude',
                             'vibrate'   => 1,
                             'sound'     => 1
@@ -1037,7 +1162,7 @@ class ApiController extends Controller
                         $result = curl_exec($ch );
                         curl_close( $ch );
                     }
-                }
+                //}
                 //echo $result;
              break; 
 
@@ -1046,19 +1171,22 @@ class ApiController extends Controller
 
                     
                 $userid = $_REQUEST['userid'];
+                //file_put_contents("test.txt", print_r($_FILES,true));
                 
-                $imagepath      = "../img/pro_pic/";
-                $uploads_dir    = Yii::getPathOfAlias('webroot').'/'.$imagepath;
+                 $imagepath      = "../img/pro_pic/";
+                 $uploads_dir    = Yii::getPathOfAlias('webroot').'/'.$imagepath;
 
                 $tmp_name       = $_FILES["file"]["tmp_name"];
                 $name           = rand().$_FILES["file"]["name"];
+                
                 move_uploaded_file($tmp_name, "$uploads_dir/$name");
 
 
                 $model              = Profile::model()->findByPk($userid);
                 $model->profilePic  = $name; 
+                //file_put_contents("test1.txt", print_r($model,true));
                 if($model->save()) {
-                    echo "image saved";
+                    $this->_sendResponse(200, CJSON::encode($model));
                 } else {
                     echo "error";
                 }
@@ -1350,6 +1478,94 @@ class ApiController extends Controller
             return;
         }
     }
+
+    public static function urlToLink($text)
+    {
+        $rexProtocol  = '(https?://)?';
+        $rexDomain    = '(?:[-a-zA-Z0-9]{1,63}\.)+[a-zA-Z][-a-zA-Z0-9]{1,62}';
+        $rexIp        = '(?:[1-9][0-9]{0,2}\.|0\.){3}(?:[1-9][0-9]{0,2}|0)';
+        $rexPort      = '(:[0-9]{1,5})?';
+        $rexPath      = '(/[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]*?)?';
+        $rexQuery     = '(\?[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]+?)?';
+        $rexFragment  = '(#[!$-/0-9:;=@_\':;!a-zA-Z\x7f-\xff]+?)?';
+        $rexUsername  = '[^]\\\\\x00-\x20\"(),:-<>[\x7f-\xff]{1,64}';
+        $rexPassword  = $rexUsername;
+        $rexUrl       = "$rexProtocol(?:($rexUsername)(:$rexPassword)?@)?($rexDomain|$rexIp)($rexPort$rexPath$rexQuery$rexFragment)";
+        $rexUrlLinker = "{\\b$rexUrl(?=[?.!,;:\"]?(\s|$))}";
+
+        $html = '';
+
+        $position = 0;
+        $validTlds = array_fill_keys(explode(" ", ".ac .ad .ae .aero .af .ag .ai .al .am .an .ao .aq .ar .arpa .as .asia .at .au .aw .ax .az .ba .bb .bd .be .bf .bg .bh .bi .biz .bj .bm .bn .bo .br .bs .bt .bv .bw .by .bz .ca .cat .cc .cd .cf .cg .ch .ci .ck .cl .cm .cn .co .com .coop .cr .cu .cv .cx .cy .cz .de .dj .dk .dm .do .dz .ec .edu .ee .eg .er .es .et .eu .fi .fj .fk .fm .fo .fr .ga .gb .gd .ge .gf .gg .gh .gi .gl .gm .gn .gov .gp .gq .gr .gs .gt .gu .gw .gy .hk .hm .hn .hr .ht .hu .id .ie .il .im .in .info .int .io .iq .ir .is .it .je .jm .jo .jobs .jp .ke .kg .kh .ki .km .kn .kp .kr .kw .ky .kz .la .lb .lc .li .lk .lr .ls .lt .lu .lv .ly .ma .mc .md .me .mg .mh .mil .mk .ml .mm .mn .mo .mobi .mp .mq .mr .ms .mt .mu .museum .mv .mw .mx .my .mz .na .name .nc .ne .net .nf .ng .ni .nl .no .np .nr .nu .nz .om .org .pa .pe .pf .pg .ph .pk .pl .pm .pn .pr .pro .ps .pt .pw .py .qa .re .ro .rs .ru .rw .sa .sb .sc .sd .se .sg .sh .si .sj .sk .sl .sm .sn .so .sr .st .su .sv .sy .sz .tc .td .tel .tf .tg .th .tj .tk .tl .tm .tn .to .tp .tr .travel .tt .tv .tw .tz .ua .ug .uk .us .uy .uz .va .vc .ve .vg .vi .vn .vu .wf .ws .xn--0zwm56d .xn--11b5bs3a9aj6g .xn--3e0b707e .xn--45brj9c .xn--80akhbyknj4f .xn--90a3ac .xn--9t4b11yi5a .xn--clchc0ea0b2g2a9gcd .xn--deba0ad .xn--fiqs8s .xn--fiqz9s .xn--fpcrj9c3d .xn--fzc2c9e2c .xn--g6w251d .xn--gecrj9c .xn--h2brj9c .xn--hgbk6aj7f53bba .xn--hlcj6aya9esc7a .xn--j6w193g .xn--jxalpdlp .xn--kgbechtv .xn--kprw13d .xn--kpry57d .xn--lgbbat1ad8j .xn--mgbaam7a8h .xn--mgbayh7gpa .xn--mgbbh1a71e .xn--mgbc0a9azcg .xn--mgberp4a5d4ar .xn--o3cw4h .xn--ogbpf8fl .xn--p1ai .xn--pgbs0dh .xn--s9brj9c .xn--wgbh1c .xn--wgbl6a .xn--xkc2al3hye2a .xn--xkc2dl3a5ee0h .xn--yfro4i67o .xn--ygbi2ammx .xn--zckzah .xxx .ye .yt .za .zm .zw"), true);
+
+        while (preg_match($rexUrlLinker, $text, $match, PREG_OFFSET_CAPTURE, $position))
+        {
+            list($url, $urlPosition) = $match[0];
+
+            // Add the text leading up to the URL.
+            $html .= substr($text, $position, $urlPosition - $position);
+
+            $protocol    = $match[1][0];
+            $username    = $match[2][0];
+            $password    = $match[3][0];
+            $domain      = $match[4][0];
+            $afterDomain = $match[5][0]; // everything following the domain
+            $port        = $match[6][0];
+            $path        = $match[7][0];
+
+            // Check that the TLD is valid or that $domain is an IP address.
+            $tld = strtolower(strrchr($domain, '.'));
+            if (preg_match('{^\.[0-9]{1,3}$}', $tld) || isset($validTlds[$tld]))
+            {
+                // Do not permit implicit protocol if a password is specified, as
+                // this causes too many errors (e.g. "my email:foo@example.org").
+                if (!$protocol && $password)
+                {
+                    $html .= $username;
+
+                    // Continue text parsing at the ':' following the "username".
+                    $position = $urlPosition + strlen($username);
+                    continue;
+                }
+
+                if (!$protocol && $username && !$password && !$afterDomain)
+                {
+                    // Looks like an email address.
+                    $completeUrl = "mailto:$url";
+                    $linkText = $url;
+                }
+                else
+                {
+                    // Prepend http:// if no protocol specified
+                    $completeUrl = $protocol ? $url : "http://$url";
+                    $linkText = "$domain$port$path";
+                }
+
+                $linkHtml = '<a href="' .$completeUrl . '" target="_blank">'
+                    . $linkText
+                    . '</a>';
+
+                // Cheap e-mail obfuscation to trick the dumbest mail harvesters.
+                $linkHtml = str_replace('@', '@', $linkHtml);
+
+                // Add the hyperlink.
+                $html .= $linkHtml;
+            }
+            else
+            {
+                // Not a valid URL.
+                $html .= $url;
+            }
+
+            // Continue text parsing from after the URL.
+            $position = $urlPosition + strlen($url);
+        }
+
+        // Add the remainder of the text.
+        $html .= substr($text, $position);
+        return $html;
+    } 
+
     /*public function actionCreate()
     {
     }

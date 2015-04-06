@@ -22,6 +22,7 @@ myCustom.controller('wraskinterestController', function wraskinterestController(
 	$scope.pop_close = function() {
 			$(".wrask_it_popup").fadeOut('slow');
 			$(".popup-overlay").fadeOut('slow');
+			$navigate.go("/home");
 	}
 
 

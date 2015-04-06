@@ -1,4 +1,4 @@
-'use strict';
+
 myCustom.controller('answersController', function answersController($scope, $http, $window, $navigate, $routeParams) {
 
 	$scope.check_login();
@@ -72,19 +72,25 @@ myCustom.controller('answersController', function answersController($scope, $htt
 		$scope.newlikes = false;
 		$scope.isProcessing = true;*/
 		$scope.likeAnswer = function(wraskid) {
-
+			//$scope.loading=true;
 			var answerid = wraskid;
 			$http({
 				url: $scope.baseurl+"likeAnswer/"+answerid,
 				method : 'GET',
-				params : {}
+				params : {userid:$scope.userId}
 			}).success(function(data) {
-				//alert(JSON.stringify(data));
-				/*$scope.oldlikes = false;
-				$scope.newlikes =data.likes;
-				$scope.isProcessing = true;*/
-				$navigate.go('/answers/'+$scope.qid);
-				//location.reload('/answers/'+$scope.qid);
+				//alert(data);
+				$scope.loading=false;
+				if(data == 1) {
+					//window.location.reload();
+					//window.location = self.location;
+					idx = $scope.wrasks.map(function(e){ return parseInt(e.answerid);}).indexOf(parseInt(answerid));
+					$scope.wrasks[idx].likes = parseInt($scope.wrasks[idx].likes) + 1;
+					//$navigate.go('/answers/'+$scope.qid);
+				}
+				//$navigate.go('/answers/'+$scope.qid);
+				//location.reload( true );
+				//$navigate.go('/answers/'+$scope.qid);
 			}).error(function(data) {
                 $scope.loading = false;
 	            });
@@ -96,10 +102,13 @@ myCustom.controller('answersController', function answersController($scope, $htt
 			$http({
 				url: $scope.baseurl+"dislikeAnswer/"+answerid,
 				method : 'GET',
-				params : {}
+				params : {userid:$scope.userId}
 			}).success(function(data) {
-				$navigate.go('/answers/'+$scope.qid);
-				//location.reload('/answers/'+$scope.qid);
+				if(data == 1) {
+					idx = $scope.wrasks.map(function(e){ return parseInt(e.answerid);}).indexOf(parseInt(answerid));
+					$scope.wrasks[idx].dislikes = parseInt($scope.wrasks[idx].dislikes) + 1;
+				}
+				//$navigate.go('/answers/'+$scope.qid);
 			}).error(function(data) {
 	            alert('error : Some errors found');
 	            });

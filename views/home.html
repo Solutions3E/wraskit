@@ -1,3 +1,9 @@
+  <style type="text/css">
+    p.link_content a {
+        color: #1414F5;
+        text-decoration: underline;
+    }
+  </style>
   <div id="fb-root"></div>
   <script>
     window.fbAsyncInit = function() {
@@ -52,7 +58,7 @@
                             </div> -->
                             <div class="profile_data no_profile">
                                <div class="profile_data_txt">
-                                 <p> {{dwrask.content}} </p>
+                                 <p class="link_content" ng-bind-html="dwrask.content">  </p>
                                 </div> 
                                 <div class="link_box">
                                     <div class="social-li">
@@ -65,9 +71,9 @@
                                         <img src="img/gplus.png" alt="Google" />
                                     </a>                                    
                                     
-                                    <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{wrask.qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
+                                    <!-- <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{wrask.qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
                                         <img src="img/fb_icon.png" alt="Facebook" />
-                                    </a>
+                                    </a> -->
                                 </div>
                                 <div class="view_qus">
                                  <span>{{dwrask.createDate}}</span> <span></span>
@@ -89,7 +95,7 @@
                             </div> -->
                             <div class="profile_data no_profile">
                                 <div class="profile_data_txt">
-                                    <p> {{wrask.content}} </p>
+                                    <p class="link_content" ng-bind-html="wrask.content">  </p>
                                 </div> 
                                 <div class="link_box">
                                     <div class="social-li">
@@ -105,9 +111,9 @@
                                         <img src="img/gplus.png" alt="Google" />
                                     </a>
 
-                                    <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{wrask.qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
+                                    <!-- <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{wrask.qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
                                         <img src="img/fb_icon.png" alt="Facebook" />
-                                    </a>
+                                    </a> -->
 
                                     <!-- <a ng-click="share(wrask)" class="facebook"><img src="img/fb_icon.png"></a> -->
                                     </div>

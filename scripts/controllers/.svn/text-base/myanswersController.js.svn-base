@@ -2,10 +2,16 @@
 myCustom.controller('myanswersController', function myanswersController($scope, $http, $window, $navigate, $routeParams) {
 
 	$scope.check_login();
+	var user_id = $scope.userId;
+	
 	$scope.loading=true;
 	$scope.qid = $routeParams.qid;
 	$scope.pid = $routeParams.uid;
-	
+
+	$scope.myanswer = false;
+	if( $scope.pid == user_id) {
+		$scope.myanswer = true;
+	}
 	
 	$http({
 			url: $scope.baseurl+"userProfile/"+$scope.pid,
@@ -13,8 +19,10 @@ myCustom.controller('myanswersController', function myanswersController($scope, 
 			params : {}
 		}).success(function(data) {
 			$scope.userprofile = data;
+			$scope.loading=false;
 		}).error(function(data) {
-        alert("error");                
+	        alert("error"); 
+	        $scope.loading=false;               
     	});
 
 	//my answers
@@ -24,8 +32,10 @@ myCustom.controller('myanswersController', function myanswersController($scope, 
 			params : {}
 		}).success(function(data) {
 			$scope.answers = data;
+			$scope.loading=false;
 		}).error(function(data) {
-        alert("error");                
+	        alert("error");         
+	        $scope.loading=false;       
     	});
 
     //my questions

@@ -3,13 +3,14 @@
 /* @var $model Blog */
 
 $this->breadcrumbs=array(
-	'Blogs'=>array('index'),
+	'Home'=>array('/'),
+	'Blogs'=>array('blog/admin'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Blog', 'url'=>array('index')),
 	array('label'=>'Create Blog', 'url'=>array('create')),
+	array('label'=>'Privacy policy', 'url'=>array('/blog/privacy/admin')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -28,13 +29,6 @@ $('.search-form form').submit(function(){
 
 <h1>Manage Blogs</h1>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'blog-grid',
 	'dataProvider'=>$model->search(),
@@ -42,12 +36,17 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 		'id',
 		'title',
-		'description',
-		'user_id',
-		'category',
+
+		array(            
+            'name'=>'description',
+            'type'=>'html',
+        ),
+		/*'user_id',
+		'category',*/
 		'created_time',
 		array(
 			'class'=>'CButtonColumn',
+			'template'=>'{update}{delete}',
 		),
 	),
 )); ?>

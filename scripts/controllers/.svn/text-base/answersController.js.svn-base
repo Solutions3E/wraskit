@@ -1,4 +1,4 @@
-'use strict';
+
 myCustom.controller('answersController', function answersController($scope, $http, $window, $navigate, $routeParams) {
 
 	$scope.check_login();
@@ -58,27 +58,39 @@ myCustom.controller('answersController', function answersController($scope, $htt
 
 
 		$scope.wraskquestion = function () {
-
+			 $scope.loading = true;
 			$http({
 				url: $scope.baseurl+"question/"+$scope.qid,
 				method : 'GET',
 				params : {}
 			}).success(function(data) {
-				//var parsed = JSON.stringify(data);
+				 $scope.loading = false;
 				$scope.question = data;
-				//alert($scope.question.content);
 			});
 			};
-
+		/*$scope.oldlikes = true;
+		$scope.newlikes = false;
+		$scope.isProcessing = true;*/
 		$scope.likeAnswer = function(wraskid) {
-
+			//$scope.loading=true;
 			var answerid = wraskid;
 			$http({
 				url: $scope.baseurl+"likeAnswer/"+answerid,
 				method : 'GET',
-				params : {}
+				params : {userid:$scope.userId}
 			}).success(function(data) {
-				location.reload('/answers/'+$scope.qid);
+				//alert(data);
+				$scope.loading=false;
+				if(data == 1) {
+					//window.location.reload();
+					//window.location = self.location;
+					idx = $scope.wrasks.map(function(e){ return parseInt(e.answerid);}).indexOf(parseInt(answerid));
+					$scope.wrasks[idx].likes = parseInt($scope.wrasks[idx].likes) + 1;
+					//$navigate.go('/answers/'+$scope.qid);
+				}
+				//$navigate.go('/answers/'+$scope.qid);
+				//location.reload( true );
+				//$navigate.go('/answers/'+$scope.qid);
 			}).error(function(data) {
                 $scope.loading = false;
 	            });
@@ -90,9 +102,13 @@ myCustom.controller('answersController', function answersController($scope, $htt
 			$http({
 				url: $scope.baseurl+"dislikeAnswer/"+answerid,
 				method : 'GET',
-				params : {}
+				params : {userid:$scope.userId}
 			}).success(function(data) {
-				location.reload('/answers/'+$scope.qid);
+				if(data == 1) {
+					idx = $scope.wrasks.map(function(e){ return parseInt(e.answerid);}).indexOf(parseInt(answerid));
+					$scope.wrasks[idx].dislikes = parseInt($scope.wrasks[idx].dislikes) + 1;
+				}
+				//$navigate.go('/answers/'+$scope.qid);
 			}).error(function(data) {
 	            alert('error : Some errors found');
 	            });

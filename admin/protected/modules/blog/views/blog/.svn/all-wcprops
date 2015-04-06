@@ -13,13 +13,13 @@ update.php
 K 25
 svn:wc:ra_dav:version-url
 V 78
-/repos/wraskit/!svn/ver/433/admin/protected/modules/blog/views/blog/update.php
+/repos/wraskit/!svn/ver/637/admin/protected/modules/blog/views/blog/update.php
 END
 create.php
 K 25
 svn:wc:ra_dav:version-url
 V 78
-/repos/wraskit/!svn/ver/433/admin/protected/modules/blog/views/blog/create.php
+/repos/wraskit/!svn/ver/621/admin/protected/modules/blog/views/blog/create.php
 END
 _search.php
 K 25
@@ -37,7 +37,7 @@ admin.php
 K 25
 svn:wc:ra_dav:version-url
 V 77
-/repos/wraskit/!svn/ver/529/admin/protected/modules/blog/views/blog/admin.php
+/repos/wraskit/!svn/ver/621/admin/protected/modules/blog/views/blog/admin.php
 END
 _view.php
 K 25

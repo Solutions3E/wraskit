@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/repos/wraskit/!svn/ver/620/admin/protected/modules/blog/views/privacy
+END
+_form.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/wraskit/!svn/ver/622/admin/protected/modules/blog/views/privacy/_form.php
+END
+update.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/wraskit/!svn/ver/622/admin/protected/modules/blog/views/privacy/update.php
+END
+create.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/wraskit/!svn/ver/620/admin/protected/modules/blog/views/privacy/create.php
+END
+_search.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/repos/wraskit/!svn/ver/620/admin/protected/modules/blog/views/privacy/_search.php
+END
+index.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/wraskit/!svn/ver/620/admin/protected/modules/blog/views/privacy/index.php
+END
+admin.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/wraskit/!svn/ver/623/admin/protected/modules/blog/views/privacy/admin.php
+END
+_view.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/wraskit/!svn/ver/620/admin/protected/modules/blog/views/privacy/_view.php
+END
+view.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/repos/wraskit/!svn/ver/620/admin/protected/modules/blog/views/privacy/view.php
+END

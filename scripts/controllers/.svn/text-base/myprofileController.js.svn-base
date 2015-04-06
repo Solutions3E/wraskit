@@ -2,9 +2,54 @@
 myCustom.controller('myprofileController', function myprofileController($scope, $http, $window, $navigate, $routeParams) {
 
 	$scope.check_login();
-	$scope.loading=true;
-	$scope.qid = $routeParams.qid;
-	var user_id = $scope.userId;
+	$scope.loading	=true;
+	$scope.qid 		= $routeParams.qid;
+	var user_id 	= $scope.userId;
+	$scope.notify 	= false;
+
+
+	//code for slider 
+	var slides = $scope.slides = [
+			{'image': $scope.siteurl+'img/carousel/index.jpg', 'text' : 'Gynecologist Calls Abortion Reversal Bill Downright Offensive','links' : 'http://www.huffingtonpost.com/2015/03/26/abortion-provider-arizona_n_6947946.html'},
+			{'image': $scope.siteurl+'img/carousel/index1.jpg', 'text' : 'The 7 naughtiest stories from the blockbuster Justice Department ','links' : 'http://www.businessinsider.in/The-7-naughtiest-stories-from-the-blockbuster-Justice-Department-sex-party-report/articleshow/46708214.cms'},
+			{'image': $scope.siteurl+'img/carousel/index2.jpg', 'text' : 'ARMORY NEW YORK 2015 ','links' : 'http://artcomments.blogspot.in/2015/03/armory-new-york-2015.html'},
+			{'image': $scope.siteurl+'img/carousel/index3.jpg', 'text' : 'Future Fathers: Livestreamed VR Birth, Womb Kick Smartwatch for Dads','links' : 'http://www.8bitdad.com/2015/03/19/future-fathers-livestreamed-vr-birth-womb-kick-smartwatch-for-dads-18884/'}];
+	
+	//~ $scope.addSlide = function() {
+		//~ var newWidth = 600 + slides.length + 1;
+		//~ slides.push({
+		  //~ image: 'http://placekitten.com/' + newWidth + '/300',
+		  //~ text: ['More','Extra','Lots of','Surplus'][slides.length % 4] + ' ' +
+			//~ ['Cats', 'Kittys', 'Felines', 'Cutes'][slides.length % 4]
+		//~ });
+	//~ };
+	//~ 
+	//~ 
+	//~ for (var i=0; i<4; i++) {
+	//~ $scope.addSlide();
+	//~ }
+	//end for slider code.
+
+
+	$scope.go = function (url) {
+      $location.path(url);
+    }
+		
+    	$http({
+			url: $scope.baseurl+"userNotify/"+$scope.userId,
+			method : 'GET',
+			params : {}
+		}).success(function(data) {
+			$scope.loading=false;
+				$scope.notifycount = data[0];
+			if(data[0] > 0) {
+				$scope.notify = true;
+
+			}
+		}).error(function(data) {
+        	alert("error");  
+        	$scope.loading=false;              
+    	});
 
 		$http({
 			url: $scope.baseurl+"userDetails/"+$scope.userId,
@@ -14,7 +59,8 @@ myCustom.controller('myprofileController', function myprofileController($scope, 
 			$scope.loading=false;
 			$scope.userdetails = data;
 		}).error(function(data) {
-        alert("error");                
+        	alert("error");                
+        	$scope.loading=false;
     	});
 
     	//user ratings
@@ -58,6 +104,20 @@ myCustom.controller('myprofileController', function myprofileController($scope, 
 		}).error(function(data) {
         alert("error");                
     	});
+
+		//notification
+
+		$scope.notifyClick = function () {
+			 $scope.loading = true;
+			$http({
+				url: $scope.baseurl+"notifyClick/"+$scope.userId,
+				method : 'GET',
+				params : {}
+			}).success(function(data) {
+				 $scope.loading = false;
+				$navigate.go('/home');
+			});
+			};
 
 
     	//connects count

@@ -31,9 +31,17 @@
                            	  
                                 <div class="social-li">
                                 <a class="answer" ng-tap="$navigate.go('/answers/{{question.id}}')">Answer</a>
-                                <a href="#" class="sc_gplus"><img src="img/gplus.png"></a>
-                                <a href="#" class="twitter"><img src="img/twitter.png"></a>
-                                <a href="#" class="facebook"><img src="img/fb_icon.png"></a>
+                                    <a href="http://twitter.com/share?url={{siteurl}}answers/{{wrask.qid}}&text={{wrask.content}}" class="sc_gplus" target="_blank">
+                                        <img src="img/twitter.png" alt="Twitter" />
+                                    </a>
+
+                                    <a href="https://plus.google.com/share?url={{siteurl}}answers/{{wrask.qid}}&text={{wrask.content}}" class="twitter" target="_blank">
+                                        <img src="img/gplus.png" alt="Google" />
+                                    </a>                                    
+                                    
+                                    <!-- <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{wrask.qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
+                                        <img src="img/fb_icon.png" alt="Facebook" />
+                                    </a> -->
                                 </div>
                             </div>
                         </div>
@@ -48,7 +56,6 @@
                 <a ng-tap="$navigate.go('/wraskinterest')" class="ftr_links"><span><img src="img/ftr_icon2.png"></span>WRASK</a>
                 <a ng-tap="$navigate.go('/info')" class="ftr_links"><span><img src="img/ftr_icon3.png"></span>Updates</a>
                 <a ng-tap="$navigate.go('/settings')" class="ftr_links"><span><img src="img/ftr_icon4.png"></span>Settings</a>
-                <a ng-tap="$navigate.go('/feedback')" class="ftr_links"><span><img src="img/ftr_icon5.png"></span>Feedback</a>
             </div>
       </div>
     </div>

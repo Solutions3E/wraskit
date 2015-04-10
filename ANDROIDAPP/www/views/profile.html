@@ -27,7 +27,7 @@
 
 
         <!-- slider code starts -->
-    <div style="height:auto; margin-top:100px; width:85%; margin-left:auto; margin-right:auto">
+    <!-- <div style="height:auto; margin-top:100px; width:85%; margin-left:auto; margin-right:auto">
     <carousel interval="3000">
       <slide ng-repeat="slide in slides" active="slide.active">
         <img ng-src="{{slide.image}}" style="margin:auto;">
@@ -37,7 +37,7 @@
         </div>
       </slide>
     </carousel>
-  </div>
+  </div> -->
     <!-- end of slider code -->
 
 
@@ -45,10 +45,10 @@
             <div class="cont_container">
                 <div class="table_box">
                     
-                    <div class="table_row">
-                            <!-- <div class="profile_photo">
+                    <div class="table_row profile_table_row newStyle">
+                            <div class="profile_photo">
                             <img src="img/pro_pic/{{userdetails.profilePic}}">
-                            </div> -->
+                            </div>
                             <div class="profile_cover">
                                 <div class="profile_data">
                                     <div class="right_row">
@@ -57,14 +57,14 @@
                                         
                                     </div>
                                     <div class="profile_data_txt">
-                                     <h3>   {{userdetails.firstname}} &nbsp; {{userdetails.lastname}}</h3>
+                                     <h3>   {{userdetails.username}} &nbsp; <!-- {{userdetails.lastname}} --></h3>
                                      
                                     </div> 
                                 </div>
                             </div>
                             <div class="profile_cover">
                                 <div class="profile_follow">
-                                            <a ng-tap="$navigate.go('/connects/')" > Connects ( {{countmyconnects}} )</a> <br>
+                                            <a ng-tap="$navigate.go('/userconnects/{{userdetails.id}}')"> Connects ( {{countmyconnects}} )</a> <br>
                                                {{userdetails.city}} &nbsp;
                                                {{userdetails.state}} 
                                 </div>
@@ -99,7 +99,7 @@
                             </div>
                     </div>
                     
-                    <div class="table_row no-border" ng-hide="showConnect">
+                    <div class="table_row no-border profile_connect" ng-hide="showConnect">
                         <button class="answer_btn" ng-click="connectUser({{pid}})">Connect <a class="btn_arrow" href="#"><img src="img/btn-right.png"></a>
                         </button>
                     </div>

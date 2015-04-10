@@ -128,9 +128,9 @@ myCustom.run(function($route, $http, $templateCache) {
 myCustom.controller('MainCtrl', function($scope, $navigate, $templateCache) {
   $scope.$navigate = $navigate;
   //$scope.baseurl = "http://localhost/projects/wraskadmin/admin/index.php/api/";
-  $scope.baseurl = "http://demo1.host3e.com/projects/2014/wraskit/admin/index.php/api/";
+  $scope.baseurl = "http://www.wraskit.com/admin/index.php/api/";
   //$scope.siteurl  = "http://localhost/projects/wraskadmin/";
-  $scope.siteurl  = "http://www.demo1.host3e.com/projects/2014/wraskit/";
+  $scope.siteurl  = "http://www.wraskit.com/";
   
   $scope.fbAppId=fbAppId;
   $scope.check_login = function() {

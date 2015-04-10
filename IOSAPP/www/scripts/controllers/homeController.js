@@ -1,4 +1,3 @@
-'use strict';
 myCustom.controller('homeController', function homeController($scope, $http, $window, $navigate) {
 
 	//$scope.check_login();
@@ -9,7 +8,8 @@ myCustom.controller('homeController', function homeController($scope, $http, $wi
 		$scope.userId = 0;
 	}
 
-  $scope.share = function(wrask){
+  /*$scope.share = function(wrask){
+  	alert(wrask);
     FB.ui(
     {
         method: 'feed',
@@ -21,62 +21,85 @@ myCustom.controller('homeController', function homeController($scope, $http, $wi
         description: wrask.content,
         message: ''
     });
-  }
+  }*/
 
-	$scope.shareTwitter = function(qid,content){
-		//alert(qid);
-		var link = "http://twitter.com/share?url="+$scope.siteurl+"#/answers/"+qid+"&text="+content;
-		window.open(link, '_blank', 'location=yes'); 
+	$scope.shareFacebook = function(wrask){
+		OAuth.initialize('EwXYkiRYxmjt3M8zpiqJEmHsuzM');
+        OAuth.popup('facebook', {
+            cache: true
+        })
+        .done(function(result) {
+            data = {message:wrask.textcontent};
+            data.name = "WRASK IT";
+            result.post('/me/feed', {
+                data: data
+            })
+            .done(function (response) {
+                //this will display the id of the message in the console
+                alert('Successfully posted to facebook.');
+                $scope.$apply();
+            })
+            .fail(function (err) {
+                //handle error with err
+                alert('Failed to post to facebook. Please try again later.');
+                $scope.$apply();
+            });
+        })
+        .fail(function (err) {
+          alert('Failed to initialize facebook.');
+        }); 
 	}
-
-
 	//href="https://plus.google.com/share?url={{siteurl}}answers/{{wrask.qid}}&text={{wrask.content}}"
-	$scope.shareGoogle = function(qid,content){
-		//alert(content);
-		//alert(qid);
-		var link1 = "http://plus.google.com/share?url="+$scope.siteurl+"#/answers/"+qid+"&text="+content;
-		window.open(link1, '_blank', 'location=yes'); 
-	}
-
-  	/*$scope.shareTwitter = function(){
-  		alert("hiii");
-  		OAuth.initialize('vnT6WnPQQUgQv18oQLiUhHG5hv8');
+	
+  	$scope.shareTwitter = function(wrask){
+  		OAuth.initialize('EwXYkiRYxmjt3M8zpiqJEmHsuzM');
             OAuth.popup('twitter', {
                 cache: true
             })
             .done(function(result) {
               
-                alert(JSON.stringify(data));
-                var twitterPost = result.post('/1.1/statuses/update.json?status='+obj.title);
+              var twitterPost = result.post('/1.1/statuses/update.json?status='+wrask.textcontent);
               twitterPost.done(function (response) {
                   //this will display the id of the message in the console
-                  alert('Success','Successfully posted to twitter.');
+                  alert('Successfully posted to twitter.');
+                  $scope.$apply();
               });
               twitterPost.fail(function (err) {
                   //handle error with err
-                  alert(JSON.stringify(err));
+                  alert("Failed to post to twitter. Duplicate content.");
+                  $scope.$apply();
               });
             })
             .fail(function (err) {
-              alert('Error','Failed to initialize twitter.');
+              alert('Failed to initialize twitter.');
             }); 
-    }*/
+    }
 
 
-    /*$scope.shareGoogleplus = function(){
-    	alert("google");
-    OAuth.initialize('vnT6WnPQQUgQv18oQLiUhHG5hv8');
-		OAuth.popup('google', {
-			cache: true
+    $scope.shareGoogleplus = function(wrask){
+    	window.plugins.socialsharing.shareVia('com.google.android.apps.plus', wrask.textcontent, null, null, null, 
+    		function(){console.log('share ok')}, function(msg) {alert('error: ' + msg)});
+    /*OAuth.initialize('EwXYkiRYxmjt3M8zpiqJEmHsuzM');
+		OAuth.popup('google_plus', {
+			cache: false
         })	
 			.done(function(result) {
-		    alert(JSON.stringify(result));
-		    //console.log(result);
+		      var gpost = result.post('/plusDomains/v1/people/me/activities',{
+                object:{originalContent: data}
+            });
+	          gpost.done(function (response) {
+	              //this will display the id of the message in the console
+	              alert('Successfully posted to google plus.');
+	          });
+	          gpost.fail(function (err) {
+	              //handle error with err
+	              alert("Failed to post to google plus. Please try again later."+JSON.stringify(err));
+	          });
 		})
 		.fail(function (err) {
-              alert('Error','Failed to initialize twitter.');
-        }); 
-	}*/
+              alert('Failed to initialize google plus.');
+        }); */
+	}
 
 
 

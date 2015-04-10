@@ -49,32 +49,81 @@ myCustom.controller('myanswersController', function myanswersController($scope, 
         alert("error");
     });
 
-	$scope.shareTwitter = function(qid,content){
-		//alert(qid);
-		var link = "http://twitter.com/share?url="+$scope.siteurl+"#/answers/"+qid+"&text="+content;
-		window.open(link, '_blank', 'location=yes'); 
+	$scope.shareFacebook = function(question){
+		OAuth.initialize('EwXYkiRYxmjt3M8zpiqJEmHsuzM');
+        OAuth.popup('facebook', {
+            cache: true
+        })
+        .done(function(result) {
+            data = {message:question.content};
+            data.name = "WRASK IT";
+            result.post('/me/feed', {
+                data: data
+            })
+            .done(function (response) {
+                //this will display the id of the message in the console
+                alert('Successfully posted to facebook.');
+                $scope.$apply();
+            })
+            .fail(function (err) {
+                //handle error with err
+                alert('Failed to post to facebook. Please try again later.');
+                $scope.$apply();
+            });
+        })
+        .fail(function (err) {
+          alert('Failed to initialize facebook.');
+        }); 
 	}
-
-
 	//href="https://plus.google.com/share?url={{siteurl}}answers/{{wrask.qid}}&text={{wrask.content}}"
-	$scope.shareGoogle = function(qid,content){
-		//alert(content);
-		//alert(qid);
-		var link1 = "http://plus.google.com/share?url="+$scope.siteurl+"#/answers/"+qid+"&text="+content;
-		window.open(link1, '_blank', 'location=yes'); 
-	}
 	
+  	$scope.shareTwitter = function(question){
+  		OAuth.initialize('EwXYkiRYxmjt3M8zpiqJEmHsuzM');
+            OAuth.popup('twitter', {
+                cache: true
+            })
+            .done(function(result) {
+              
+              var twitterPost = result.post('/1.1/statuses/update.json?status='+question.content);
+              twitterPost.done(function (response) {
+                  //this will display the id of the message in the console
+                  alert('Successfully posted to twitter.');
+                  $scope.$apply();
+              });
+              twitterPost.fail(function (err) {
+                  //handle error with err
+                  alert("Failed to post to twitter. Duplicate content.");
+                  $scope.$apply();
+              });
+            })
+            .fail(function (err) {
+              alert('Failed to initialize twitter.');
+            }); 
+    }
 
-		$scope.share = function(wrask){
-		    FB.ui(
-		    {
-		        method: 'feed',
-		        name: wrask.firstname,
-		        link:$scope.siteurl+'#/answers/'+wrask.id,
-		        picture: $scope.siteurl+'img/login_logo.png',
-		        caption: wrask.title,
-		        description: wrask.content,
-		        message: ''
-		    });
-		  }
+
+    $scope.shareGoogleplus = function(question){
+    	window.plugins.socialsharing.shareVia('com.google.android.apps.plus', question.content, null, null, null, 
+    		function(){console.log('share ok')}, function(msg) {alert('error: ' + msg)});
+    /*OAuth.initialize('EwXYkiRYxmjt3M8zpiqJEmHsuzM');
+		OAuth.popup('google_plus', {
+			cache: false
+        })	
+			.done(function(result) {
+		      var gpost = result.post('/plusDomains/v1/people/me/activities',{
+                object:{originalContent: data}
+            });
+	          gpost.done(function (response) {
+	              //this will display the id of the message in the console
+	              alert('Successfully posted to google plus.');
+	          });
+	          gpost.fail(function (err) {
+	              //handle error with err
+	              alert("Failed to post to google plus. Please try again later."+JSON.stringify(err));
+	          });
+		})
+		.fail(function (err) {
+              alert('Failed to initialize google plus.');
+        }); */
+	}
 });

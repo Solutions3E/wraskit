@@ -22,21 +22,6 @@ myCustom.controller('answersController', function answersController($scope, $htt
 	});
 
 
-	$scope.shareTwitter = function(qid,content){
-		//alert(qid);
-		var link = "http://twitter.com/share?url="+$scope.siteurl+"#/answers/"+qid+"&text="+content;
-		window.open(link, '_blank', 'location=yes'); 
-	}
-
-
-	//href="https://plus.google.com/share?url={{siteurl}}answers/{{wrask.qid}}&text={{wrask.content}}"
-	$scope.shareGoogle = function(qid,content){
-		//alert(content);
-		//alert(qid);
-		var link1 = "http://plus.google.com/share?url="+$scope.siteurl+"#/answers/"+qid+"&text="+content;
-		window.open(link1, '_blank', 'location=yes'); 
-	}
-	
 	//to get uer of the current question
 	$http({
 		url: $scope.baseurl+"getUserofQuestion/"+$scope.qid,
@@ -125,19 +110,64 @@ myCustom.controller('answersController', function answersController($scope, $htt
 			}).error(function(data) {
 	            alert('error : Some errors found');
 	            });
-			};
+		};
 
-	$scope.share = function(wrask){
-	    FB.ui(
-	    {
-	        method: 'feed',
-	        name: wrask.firstname,
-	        //link: 'http://www.hyperarts.com/external-xfbml/'+post.id,
-	        link:$scope.siteurl+'#/answers/'+$scope.qid,
-	        picture: $scope.siteurl+'img/login_logo.png',
-	        caption: wrask.title,
-	        description: wrask.content,
-	        message: ''
-	    });
-  	}
+		$scope.shareFacebook = function(qid,content){
+		OAuth.initialize('EwXYkiRYxmjt3M8zpiqJEmHsuzM');
+        OAuth.popup('facebook', {
+            cache: true
+        })
+        .done(function(result) {
+            data = {message:$scope.question.textcontent};
+            data.name = "WRASK IT";
+            result.post('/me/feed', {
+                data: data
+            })
+            .done(function (response) {
+                //this will display the id of the message in the console
+                alert('Successfully posted to facebook.');
+                $scope.$apply();
+            })
+            .fail(function (err) {
+                //handle error with err
+                alert('Failed to post to facebook. Please try again later.');
+                $scope.$apply();
+            });
+        })
+        .fail(function (err) {
+          alert('Failed to initialize facebook.');
+        }); 
+	}
+	//href="https://plus.google.com/share?url={{siteurl}}answers/{{wrask.qid}}&text={{wrask.content}}"
+	
+  	$scope.shareTwitter = function(qid,data){
+  		OAuth.initialize('EwXYkiRYxmjt3M8zpiqJEmHsuzM');
+            OAuth.popup('twitter', {
+                cache: true
+            })
+            .done(function(result) {
+              
+              var twitterPost = result.post('/1.1/statuses/update.json?status='+$scope.question.textcontent);
+              twitterPost.done(function (response) {
+                  //this will display the id of the message in the console
+                  alert('Successfully posted to twitter.');
+                  $scope.$apply();
+              });
+              twitterPost.fail(function (err) {
+                  //handle error with err
+                  alert("Failed to post to twitter. Duplicate content.");
+                  $scope.$apply();
+              });
+            })
+            .fail(function (err) {
+              alert('Failed to initialize twitter.');
+            }); 
+    }
+
+
+    $scope.shareGoogleplus = function(qid,datas){
+    	
+    	window.plugins.socialsharing.shareVia('com.google.android.apps.plus', $scope.question.textcontent, null, null, null, 
+    		function(){console.log('share ok')}, function(msg) {alert('error: ' + msg)});
+	}
 });

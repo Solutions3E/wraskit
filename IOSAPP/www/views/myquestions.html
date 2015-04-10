@@ -41,15 +41,17 @@
                                 <div class="social-li">
                                 <a class="answer" ng-tap="$navigate.go('/answers/{{question.id}}')">Answer</a>
                                     
-                                    <a ng-click="shareTwitter({{question.id}},'{{question.content}}');" class="sc_gplus" target="_blank">
+                                    <a class="sc_gplus" ng-click="shareTwitter(question);">
                                         <img src="img/twitter.png" alt="Twitter" />
                                     </a>
 
-                                    <a ng-click="shareGoogle({{question.id}},'{{question.content}}');" class="twitter" target="_blank">
+                                    <!-- <a ng-click="shareGoogleplus(question);" class="twitter">
                                         <img src="img/gplus.png" alt="Google" />
+                                    </a>   -->                                  
+                                    
+                                    <a ng-click="shareFacebook(question);" class="facebook">
+                                        <img src="img/fb_icon.png" alt="Facebook" />
                                     </a>
-
-                                    <!-- <a ng-click="share(question)" class="facebook"><img src="img/fb_icon.png"></a> -->
                                 </div>
                             </div>
                         </div>

@@ -4,19 +4,7 @@
         text-decoration: underline;
     }
   </style>
-  <div id="fb-root"></div>
-  <script>
-    window.fbAsyncInit = function() {
-        FB.init({appId: '1568536133414519', status: true, cookie: true,
-        xfbml: true});
-    };
-    (function() {
-        var e = document.createElement('script'); e.async = true;
-        e.src = document.location.protocol +
-        '//connect.facebook.net/en_US/all.js';
-        document.getElementById('fb-root').appendChild(e);
-    }());
-  </script>
+ 
     
     <!-- loading  -->
     <div class="popup_main_new" ng-show="loading">
@@ -66,24 +54,24 @@
                                     <!-- <a href="http://twitter.com/share?url={{siteurl}}answers/{{wrask.qid}}&text={{wrask.content}}" class="sc_gplus" target="_blank">
                                         <img src="img/twitter.png" alt="Twitter" />
                                     </a> -->
-                                    <a class="sc_gplus" ng-click="shareTwitter({{dwrask.id}},'{{dwrask.content}}');">
+                                    <a class="sc_gplus" ng-click="shareTwitter(dwrask);">
                                         <img src="img/twitter.png" alt="Twitter" />
                                     </a>
 
-                                    <a ng-click="shareGoogle({{dwrask.id}},'{{dwrask.content}}');" class="twitter" target="_blank">
+                                    <!-- <a ng-click="shareGoogleplus(dwrask);" class="twitter">
                                         <img src="img/gplus.png" alt="Google" />
-                                    </a>                                    
+                                    </a>   -->                                  
                                     
-                                    <!-- <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{wrask.qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
+                                    <a ng-click="shareFacebook(dwrask);" class="facebook">
                                         <img src="img/fb_icon.png" alt="Facebook" />
-                                    </a> -->
+                                    </a>
                                 </div>
                                 <div class="view_qus">
                                  <span>{{dwrask.createDate}}</span> <span></span>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
 
                     </div>
 
@@ -104,24 +92,30 @@
                                     <div class="social-li">
                                     <a class="answer" ng-tap="$navigate.go('/answers/{{wrask.id}}')">Answer</a>
 
-                                    <!-- Twitter -->
-                                    <!-- <a href="http://twitter.com/share?url={{siteurl}}answers/{{wrask.qid}}&text={{wrask.content}}" class="sc_gplus" target="_blank">
-                                        <img src="img/twitter.png" alt="Twitter" />
-                                    </a> -->
-
-                                    <a class="sc_gplus" ng-click="shareTwitter({{wrask.id}},'{{wrask.content}}');">
+                                    <a class="sc_gplus" ng-click="shareTwitter(wrask);">
                                         <img src="img/twitter.png" alt="Twitter" />
                                     </a>
 
-                                    <a ng-click="shareGoogle({{wrask.id}},'{{wrask.content}}');" class="twitter">
+                                    <!-- <a ng-click="shareGoogleplus(wrask);" class="twitter">
+                                        <img src="img/gplus.png" alt="Google" />
+                                    </a>   -->                                  
+                                    
+                                    <a ng-click="shareFacebook(wrask);" class="facebook">
+                                        <img src="img/fb_icon.png" alt="Facebook" />
+                                    </a>
+
+                                    <!-- <a class="sc_gplus" ng-click="shareTwitter({{wrask.id}},'{{wrask.content}}');">
+                                        <img src="img/twitter.png" alt="Twitter" />
+                                    </a>
+
+                                    <a ng-click="shareGoogleplus({{wrask.id}},'{{wrask.content}}');" class="twitter">
                                         <img src="img/gplus.png" alt="Google" />
                                     </a>
 
-                                    <!-- <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{wrask.qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
+                                    <a ng-click="shareFacebook({{wrask.id}},'{{wrask.content}}');" class="facebook">
                                         <img src="img/fb_icon.png" alt="Facebook" />
                                     </a> -->
-
-                                    <!-- <a ng-click="share(wrask)" class="facebook"><img src="img/fb_icon.png"></a> -->
+                                    
                                     </div>
                                     <div class="view_qus">
                                      <span>{{wrask.createDate}}</span> <span></span>
@@ -130,7 +124,7 @@
                             </div>
                         </div>
                         <!-- guest login pop up -->
-                        <div ng-show="isGuest()">
+                        <!-- <div ng-show="isGuest()">
                             <div class="wrask_it_popup">
                                 <div class="popup-block">
                                     <div class="popup_head">
@@ -143,7 +137,6 @@
                                                 <fieldset> 
                                                     <div class="form_field_wrapper">
                                                         <input type="text" placeholder="User Name" name="username" ng-model="username" class="field_log" required>
-                                                        <!-- <p ng-show="userForm.username.$invalid && !userForm.username.$pristine" class="form_error">User Name is required</p> -->
                                                     </div>
                                                     <div class="form_field_wrapper">
                                                         <input type="password" placeholder="Password" name="password" ng-model="password" class="field_log">
@@ -172,11 +165,10 @@
                                             </form>
                                             
                                         </div>
-                                        <!-- wrask interest form -->
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- guest login pop up -->
                     
                 </div>

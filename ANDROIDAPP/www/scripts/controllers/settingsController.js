@@ -6,6 +6,12 @@ myCustom.controller('settingsController', function settingsController($scope, $h
 	$scope.userId  = localStorage.getItem("userId");
 	$scope.logout  = function () {
 		localStorage.clear();
+			facebookConnectPlugin.getLoginStatus(
+	        function(response){
+	            if(response.status =="connected"){
+	                facebookConnectPlugin.logout();
+	            }
+	        }); 
 	    $navigate.go('/login');
 	}
 	

@@ -5,6 +5,10 @@ myCustom.controller('profileController', function profileController($scope, $htt
 	$scope.loading=true;
 	$scope.pid = $routeParams.uid;
 	//alert($scope.pid);
+	
+	if($scope.pid == $scope.userId) {
+		$(".profile_connect").hide();
+	}
 	var user_id = $scope.userId;
 
 		

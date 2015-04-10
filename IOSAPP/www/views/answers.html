@@ -50,18 +50,18 @@
                             <div class="link_box">
                               <!-- <a href="#" class="answer ">Answer</a> -->
                                 <div class="social-li">
-                                    <a ng-click="shareTwitter({{qid}},'{{question.content}}');" class="sc_gplus" target="_blank">
+                                    
+                                    <a class="sc_gplus" ng-click="shareTwitter({{qid}},'{{question.textcontent}}');">
                                         <img src="img/twitter.png" alt="Twitter" />
                                     </a>
-                                    <a ng-click="shareGoogle({{qid}},'{{question.content}}');" class="twitter" target="_blank">
+
+                                    <!-- <a ng-click="shareGoogleplus({{qid}},'hgddgdhgd');" class="twitter">
                                         <img src="img/gplus.png" alt="Google" />
-                                    </a>
+                                    </a>  -->                                   
                                     
-                                    <!-- <a href="http://www.facebook.com/dialog/feed?app_id={{fbAppId}}&link={{siteurl}}answers/{{qid}}&redirect_uri={{siteurl}}" class="facebook" target="_blank">
+                                    <a ng-click="shareFacebook({{qid}},'{{question.textcontent}}');" class="facebook">
                                         <img src="img/fb_icon.png" alt="Facebook" />
-                                    </a> -->
-                                    
-                                    <!-- <a ng-click="share(question)" class="facebook"><img src="img/fb_icon.png"></a> -->
+                                    </a>
                                 </div>
                             </div>
                             </div>
@@ -76,7 +76,7 @@
                         <div class="profile_box">
                             <a ng-tap="$navigate.go('profile/{{wrask.userid}}')"><img ng-if="wrask.profilePic" src="{{imageurl}}img/pro_pic/{{wrask.profilePic}}"><img ng-if="!wrask.profilePic" src="img/pro_pic/no_image.png"></a>
                             </div>
-                            <div class="profile_data">
+                            <div class="profile_data minWidth">
                            <div class="profile_data_txt">
                              <!-- <p>{{wrask.answer}}</p> -->
                              <p class="link_content" ng-bind-html="wrask.answer">  </p>
@@ -102,7 +102,7 @@
                                     </ul>
                                 </div>
                                 <div class="view_qus">
-                                 <span>{{wrask.createDate}}</span> <span>{{wrask.firstname}} </span>
+                                 <span>{{wrask.createDate}}</span> <span>{{wrask.username}} </span>
                                 </div>
 
                                         
